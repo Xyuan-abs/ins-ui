@@ -28,7 +28,7 @@ let emit = defineEmits(['update:modelValue', 'change'])
 let { elementType } = useSetElementType(props.item)
 
 /* attr */
-let { $attrs } = useSetAttrs(props.item, elementType.value)
+let { $attrs } = useSetAttrs(props.item, elementType)
 
 /* 值的双向绑定 */
 let selectValue = useVModel(props, 'modelValue', emit) // 值的双向绑定
@@ -62,18 +62,17 @@ function change() {
       </template>
 
       <!-- 其他 -->
-      <el-option
-        v-for="option in item.options"
-        v-else
-        :key="option.value"
-        :label="option.label"
-        :value="option.value"
-      >
-        <component :is="item.optionsItem" :option="option" />
-      </el-option>
+      <template v-else>
+        <el-option
+          v-for="option in item.options"
+          :key="option.value"
+          :label="option.label"
+          :value="option.value"
+        >
+          <component :is="item.optionsItem" :option="option" />
+        </el-option>
+      </template>
     </el-select>
-
-    <item-text :item="item" />
   </div>
 </template>
 

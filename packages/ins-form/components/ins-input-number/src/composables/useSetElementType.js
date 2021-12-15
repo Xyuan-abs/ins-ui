@@ -5,9 +5,9 @@
  */
 export default function (item) {
   let elementTypeMap = {
-    default: 'select',
-    select: 'select',
-    group: 'group', // 分组
+    default: 'number',
+    numberWithUnit: 'numberWithUnit',
+    numberRange: 'numberRange',
   }
   let elementType = elementTypeMap[item.elementType || 'default']
 

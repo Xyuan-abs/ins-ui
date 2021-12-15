@@ -1,5 +1,4 @@
 import InsForm from './components/ins-form'
-
 import InsDatePicker from './components/ins-date-picker'
 import InsInput from './components/ins-input'
 import InsInputNumber from './components/ins-input-number'

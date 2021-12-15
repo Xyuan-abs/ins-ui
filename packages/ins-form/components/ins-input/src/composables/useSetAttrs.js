@@ -14,13 +14,11 @@ export default function (item, elementType) {
   const inputAttrs = {
     type: 'text',
   }
-
   const textareaAttrs = {
     type: 'textarea',
     'show-word-limit': true,
     autosize: { minRows: 4, maxRows: 6 },
   }
-
   const attrsMap = {
     input: inputAttrs,
     textarea: textareaAttrs,

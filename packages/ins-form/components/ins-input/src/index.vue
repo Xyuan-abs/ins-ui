@@ -28,7 +28,7 @@ let emit = defineEmits(['update:modelValue', 'change'])
 let { elementType } = useSetElementType(props.item)
 
 /* attrs配置 */
-let { $attrs } = useSetAttrs(props.item, elementType.value)
+let { $attrs } = useSetAttrs(props.item, elementType)
 
 /* 值的双向绑定 */
 let inputValue = useVModel(props, 'modelValue', emit)

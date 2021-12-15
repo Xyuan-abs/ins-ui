@@ -11,8 +11,8 @@ export default function (props, emit) {
   watch(
     () => props.modelValue,
     (cur) => {
-      startValue.value = cur?.[0] || cur?.[0] === 0 ? cur?.[0] : undefined
-      endValue.value = cur?.[1] || cur?.[1] === 0 ? cur?.[1] : undefined
+      startValue.value = cur?.[0]
+      endValue.value = cur?.[1]
     },
     {
       immediate: true,

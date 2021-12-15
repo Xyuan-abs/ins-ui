@@ -29,8 +29,8 @@ let emit = defineEmits(['update:modelValue', 'change'])
 const defaultAttrs = {}
 
 /* 前后项的配置 */
-let startAttr = computed(() => Object.assign(defaultAttrs, props.item.attr?.[0]))
-let endAttr = computed(() => Object.assign(defaultAttrs, props.item.attr?.[1]))
+let startAttr = computed(() => Object.assign({}, defaultAttrs, props.item.attr?.[0]))
+let endAttr = computed(() => Object.assign({}, defaultAttrs, props.item.attr?.[1]))
 
 /* 前后项的rules */
 let startRules = computed(() => {
@@ -54,21 +54,17 @@ function setRules(item, index) {
   return rules
 }
 
-/* 值的双向绑定 -- start */
-
 /* 值的双向绑定 */
-let { startValue, endValue, setStartValue, setEndValue } = useSetModel(props.modelValue, emit)
+let { startValue, endValue, setStartValue, setEndValue } = useSetModel(props, emit)
 
-// 统一change事件
+/* 统一change事件 */
 function change() {
   emit('change')
 }
-/* 值的双向绑定 -- end */
 </script>
 
 <template>
   <div class="ins-input-number-range">
-    {{ modelValue }}
     <!-- 起始值 -->
     <el-form-item
       :key="`form-item-${item.name}-number-range-start`"
@@ -76,6 +72,7 @@ function change() {
       :prop="'form[' + index + '].value[0]'"
       :rules="startRules"
     >
+      {{ startValue }}
       <el-input-number
         :model-value="startValue"
         v-bind="startAttr"

@@ -5,13 +5,13 @@
   时间：2021年11月4日09:22:36
  -->
 <script setup>
-import { computed } from 'vue'
-
 import ItemText from './ItemText.vue'
 
 import InputNumber from '../components/input-number/index.vue'
 import InputNumberRange from '../components/input-number-range/index.vue'
 import InputNumberWithUnit from '../components/InputNumberWithUnit.vue'
+
+import useSetElementType from './composables/useSetElementType'
 
 import { useVModel } from '@vueuse/core'
 
@@ -32,15 +32,12 @@ let props = defineProps({
 let emit = defineEmits(['update:modelValue', 'change'])
 
 /* 类型 */
-let elementTypeMap = {
-  default: 'number',
-  numberWithUnit: 'numberWithUnit',
-  numberRange: 'numberRange',
-}
-let elementType = computed(() => elementTypeMap[props.item.elementType || 'default'])
+let { elementType } = useSetElementType(props.item)
 
 /* 值的双向绑定 */
-let numberValue = useVModel(props, 'modelValue', emit) // 值的双向绑定
+let numberValue = useVModel(props, 'modelValue', emit)
+
+/* change事件 */
 function change() {
   emit('change')
 }
