@@ -1,0 +1,8 @@
+{
+  "name": "ins-form",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Xyuan",
+  "license": "MIT",
+  "private": true
+}
