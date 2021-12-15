@@ -24,7 +24,7 @@
     "eslint-plugin-vue": "^8.2.0",
     "lerna": "^4.0.0",
     "prettier": "^2.5.1",
-    "vuepress-plugin-demoblock-plus": "^1.5.0",
+    "vuepress-plugin-demoblock-plus": "^1.5.1",
     "vuepress-vite": "^2.0.0-beta.27"
   }
 }
