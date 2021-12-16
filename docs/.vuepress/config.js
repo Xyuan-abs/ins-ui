@@ -1,7 +1,7 @@
 
 module.exports = {
   title: 'ins-ui', // 设置网站标题
-  description: 'Just for fun', //描述
+  description: '二次封装的 UI 组件集合', //描述
   port: 2333, //端口
   themeConfig: { //主题配置
     // 添加导航栏

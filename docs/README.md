@@ -5,9 +5,6 @@ actions:
   - text: 前往 →
     link: /guide/form.md
     type: primary
-  - text: 项目简介
-    link: /guide/
-    type: secondary
 
 features:
   - title: 布局类组件
