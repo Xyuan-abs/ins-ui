@@ -5,8 +5,8 @@
   时间：2021年11月4日09:39:42
  -->
 <script setup>
-import { computed } from 'vue'
-
+import useSetAttrs from './composables/useSetAttrs.js'
+import useSetRules from './composables/useSetRules.js'
 import useSetModel from './composables/useSetModel.js'
 
 let props = defineProps({
@@ -25,37 +25,18 @@ let props = defineProps({
 })
 let emit = defineEmits(['update:modelValue', 'change'])
 
-/* el-input默认attr */
-const defaultAttrs = {}
+/* attr */
+const { $startAttr, $endAttr } = useSetAttrs(props.item)
 
-/* 前后项的配置 */
-let startAttr = computed(() => Object.assign({}, defaultAttrs, props.item.attr?.[0]))
-let endAttr = computed(() => Object.assign({}, defaultAttrs, props.item.attr?.[1]))
-
-/* 前后项的rules */
-let startRules = computed(() => {
-  return setRules(props.item, 0)
-})
-let endRules = computed(() => {
-  return setRules(props.item, 1)
-})
-function setRules(item, index) {
-  let attr = item.attr?.[index] ?? {}
-  let rules = attr?.rules ?? []
-
-  if (item.required) {
-    rules.push({
-      required: true,
-      message: `请输入${attr.label || ''}`,
-      trigger: 'blur',
-    })
-  }
-
-  return rules
-}
+/* rules */
+const { startRules, endRules } = useSetRules(props.item)
 
 /* 值的双向绑定 */
-let { startValue, endValue, setStartValue, setEndValue } = useSetModel(props, emit)
+let { startValue, endValue, setStartValue, setEndValue } = useSetModel(
+  props,
+  [$startAttr.value, $endAttr.value],
+  emit
+)
 
 /* 统一change事件 */
 function change() {
@@ -72,10 +53,9 @@ function change() {
       :prop="'form[' + index + '].value[0]'"
       :rules="startRules"
     >
-      {{ startValue }}
       <el-input-number
         :model-value="startValue"
-        v-bind="startAttr"
+        v-bind="$startAttr"
         @change="setStartValue($event), change"
       />
     </el-form-item>
@@ -90,10 +70,9 @@ function change() {
       :prop="'form[' + index + '].value[1]'"
       :rules="endRules"
     >
-      {{ endValue }}
       <el-input-number
         :model-value="endValue"
-        v-bind="endAttr"
+        v-bind="$endAttr"
         @change="setEndValue($event), change"
       />
     </el-form-item>
@@ -107,7 +86,7 @@ function change() {
   align-items: center;
   justify-content: space-around;
   .number-range-item {
-    width: calc(50% - 10px);
+    flex: 1;
     margin-bottom: 0;
     :deep(.el-input-number) {
       width: 100%;
@@ -125,8 +104,9 @@ function change() {
   }
   .range-separator {
     display: inline-block;
-    width: 20px;
     text-align: center;
+    padding: 0 10px;
+    flex-shrink: 0;
   }
 }
 </style>

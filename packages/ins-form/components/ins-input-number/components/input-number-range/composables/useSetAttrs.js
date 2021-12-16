@@ -6,10 +6,22 @@ import { computed } from 'vue'
  * @returns
  */
 export default function (item) {
-  const defaultAttrs = {}
-  const $attrs = computed(() => Object.assign({}, defaultAttrs, item.attr || {}))
+  let startAttr = item.attr?.[0] || {}
+  let endAttr = item.attr?.[1] || {}
+
+  const startDefaultAttrs = {
+    placeholder: '请输入' + (startAttr?.label ?? ''),
+  }
+
+  const endDefaultAttrs = {
+    placeholder: '请输入' + (endAttr?.label ?? ''),
+  }
+
+  const $startAttr = computed(() => Object.assign({}, startDefaultAttrs, startAttr))
+  const $endAttr = computed(() => Object.assign({}, endDefaultAttrs, endAttr))
 
   return {
-    $attrs,
+    $startAttr,
+    $endAttr,
   }
 }

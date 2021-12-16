@@ -5,7 +5,12 @@
   时间：2021年11月4日09:39:42
  -->
 <script setup>
-import { ref, watch, computed, toRefs } from 'vue'
+import { toRefs } from 'vue'
+
+import useSetAttrs from './composables/useSetAttrs'
+import useSetRules from './composables/useSetRules'
+
+import useSetModel from './composables/useSetModel'
 
 let props = defineProps({
   item: {
@@ -23,59 +28,22 @@ let props = defineProps({
 })
 let emit = defineEmits(['update:modelValue', 'change'])
 
+// 单位下拉选项
 let { options } = toRefs(props.item)
 
-/* el-input默认attr */
-const defaultAttrs = {
-  placeholder: '请输入' + (props.item.label ?? ''),
-}
+/* attr */
+const { $inputAttrs, $unitAttrs } = useSetAttrs(props.item)
 
-/* 前后项的rules */
-let startRules = computed(() => {
-  return setRules(props.item, 0)
-})
-let endRules = computed(() => {
-  return setRules(props.item, 1)
-})
-function setRules(item, index) {
-  let attr = item.attr?.[index] ?? {}
-  let rules = attr?.rules ?? []
+/* rules */
+const { inputRules, unitRules } = useSetRules(props.item)
 
-  if (item.required) {
-    rules.push({
-      required: true,
-      message: `请输入${attr.label || ''}`,
-      trigger: 'blur',
-    })
-  }
+/* 值的双向绑定 */
+let { inputValue, unitValue, inputChange, unitChange } = useSetModel(props, emit)
 
-  return rules
-}
-
-/* 值的双向绑定 -- start */
-let inputValue = ref()
-let unitValue = ref()
-watch(
-  () => props.modelValue,
-  (cur) => {
-    inputValue.value = cur?.[0]
-    unitValue.value = cur?.[1]
-  },
-  {
-    immediate: true,
-  }
-)
-function inputChange(value) {
-  let result = [value, unitValue.value]
-  emit('update:modelValue', result)
+/* 统一change事件 */
+function change() {
   emit('change')
 }
-function unitChange(value) {
-  let result = [inputValue.value, value]
-  emit('update:modelValue', result)
-  emit('change')
-}
-/* 值的双向绑定 -- end */
 </script>
 
 <template>
@@ -84,12 +52,12 @@ function unitChange(value) {
     <el-form-item
       class="number-with-unit-input"
       :prop="'form[' + index + '].value[0]'"
-      :rules="startRules"
+      :rules="inputRules"
     >
       <el-input-number
         v-model="inputValue"
-        v-bind="Object.assign(defaultAttrs, item.attr || {})"
-        @change="inputChange"
+        v-bind="$inputAttrs"
+        @change="inputChange($event), change"
       />
     </el-form-item>
 
@@ -97,9 +65,9 @@ function unitChange(value) {
     <el-form-item
       class="number-with-unit-select"
       :prop="'form[' + index + '].value[1]'"
-      :rules="endRules"
+      :rules="unitRules"
     >
-      <el-select v-model="unitValue" placeholder="单位" @change="unitChange">
+      <el-select v-model="unitValue" v-bind="$unitAttrs" @change="unitChange($event), change">
         <el-option
           v-for="option in options"
           :key="option.value"
@@ -119,7 +87,7 @@ function unitChange(value) {
   justify-content: space-around;
 
   .number-with-unit-input {
-    width: calc(100% - 100px - 5px);
+    flex: 1;
     :deep(.el-input-number) {
       width: 100%;
       .el-input-number__decrease,
@@ -136,9 +104,14 @@ function unitChange(value) {
   }
 
   .number-with-unit-select {
+    flex-shrink: 0;
     width: 100px;
+    margin-left: 5px;
     :deep(.el-select) {
       width: 100%;
+      .el-input__validateIcon {
+        display: none;
+      }
     }
   }
 

@@ -1,18 +1,48 @@
 import { ref, watch, nextTick } from 'vue'
 
+let defaultInputNumberValue = undefined
+
 /**
  * 获取表单项 类型
  * @param {Object} item 表单项配置
  * @returns 表单项 类型
  */
-export default function (props, emit) {
+export default function (props, attrs, emit) {
   let startValue = ref()
   let endValue = ref()
   watch(
     () => props.modelValue,
     (cur) => {
-      startValue.value = cur?.[0] || cur?.[0] === 0 ? cur?.[0] : undefined
-      endValue.value = cur?.[1] || cur?.[1] === 0 ? cur?.[1] : undefined
+      let sv = cur?.[0]
+      let ev = cur?.[1]
+
+      let sMaxMin = attrs[0].value ?? {}
+      let eMaxMin = attrs[1].value ?? {}
+
+      // 当输入值小于最小值 或 大于最大值 时  重置
+      if (sv || sv === 0) {
+        if (sv > sMaxMin.max) {
+          startValue.value = sMaxMin.max
+        } else if (sv < sMaxMin.min) {
+          startValue.value = sMaxMin.min
+        } else {
+          startValue.value = sv
+        }
+      } else {
+        startValue.value = defaultInputNumberValue
+      }
+
+      if (ev || ev === 0) {
+        if (ev > eMaxMin.max) {
+          endValue.value = eMaxMin.max
+        } else if (ev < eMaxMin.min) {
+          endValue.value = eMaxMin.min
+        } else {
+          endValue.value = ev
+        }
+      } else {
+        endValue.value = defaultInputNumberValue
+      }
     },
     {
       immediate: true,
@@ -41,7 +71,11 @@ export default function (props, emit) {
     // end < start  =>  end = start
     if (hasStartValue && value < startValue.value) {
       nextTick(() => {
-        endValue.value = startValue.value
+        if (value || value === 0) {
+          endValue.value = startValue.value
+        } else {
+          endValue.value = defaultInputNumberValue
+        }
         setModelValue()
       })
     } else {

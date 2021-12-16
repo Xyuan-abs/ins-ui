@@ -9,7 +9,8 @@ import ItemText from './ItemText.vue'
 
 import InputNumber from '../components/input-number/index.vue'
 import InputNumberRange from '../components/input-number-range/index.vue'
-import InputNumberWithUnit from '../components/InputNumberWithUnit.vue'
+import InputNumberWithUnit from '../components/input-number-with-unit/index.vue'
+// import InputNumberWithUnit from '../components/InputNumberWithUnit.vue'
 
 import useSetElementType from './composables/useSetElementType'
 

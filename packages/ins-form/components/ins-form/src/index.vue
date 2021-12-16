@@ -14,6 +14,7 @@ import InsDatePicker from '../../ins-date-picker'
 import useSetAttrs from '../composables/useSetAttrs'
 import useSetFormItem from '../composables/useSetFormItem'
 import useSubmit from '../composables/useSubmit'
+import useSetRules from '../composables/useSetRules'
 
 let props = defineProps({
   hasSubmit: {
@@ -40,6 +41,9 @@ let { $attrs } = useSetAttrs()
 
 // 表单项配置
 let { setStyle } = useSetFormItem(props.cols)
+
+// 表单项配置
+let { setRules } = useSetRules(props.cols)
 
 // 提交、重置
 let ruleFormRef = ref(null)
@@ -85,7 +89,7 @@ defineExpose({
           class="form-item"
           :prop="item.required ? undefined : 'form[' + index + '].value'"
           :label="item.label"
-          :rules="item.rules"
+          :rules="setRules(item)"
           :required="item.required"
           :style="setStyle(cols, item)"
         >

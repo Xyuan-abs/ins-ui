@@ -1,4 +1,6 @@
-import { ref, watch, nextTick } from 'vue'
+import { ref, watch } from 'vue'
+
+let defaultInputNumberValue = undefined
 
 /**
  * 获取表单项 类型
@@ -6,57 +8,47 @@ import { ref, watch, nextTick } from 'vue'
  * @returns 表单项 类型
  */
 export default function (props, emit) {
-  let startValue = ref()
-  let endValue = ref()
+  let inputValue = ref()
+  let unitValue = ref()
   watch(
-    () => props.modelValue,
+    () => props.modelValue?.[0],
     (cur) => {
-      startValue.value = cur?.[0]
-      endValue.value = cur?.[1]
+      inputValue.value = cur
+    },
+    {
+      immediate: true,
+    }
+  )
+  watch(
+    () => props.modelValue?.[1],
+    (cur) => {
+      unitValue.value = cur
     },
     {
       immediate: true,
     }
   )
 
-  function setStartValue(value) {
-    startValue.value = value
-
-    let hasEndValue = endValue.value || endValue.value === 0
-    // start > end  =>  start = end
-    if (hasEndValue && value > endValue.value) {
-      nextTick(() => {
-        startValue.value = endValue.value
-        setModelValue()
-      })
-    } else {
-      setModelValue()
-    }
+  function inputChange(value) {
+    inputValue.value = value ?? defaultInputNumberValue
+    setModelValue()
   }
-  function setEndValue(value) {
-    endValue.value = value
-
-    let hasStartValue = startValue.value || startValue.value === 0
-
-    // end < start  =>  end = start
-    if (hasStartValue && value < startValue.value) {
-      nextTick(() => {
-        endValue.value = startValue.value
-        setModelValue()
-      })
-    } else {
-      setModelValue()
-    }
+  function unitChange(value) {
+    unitValue.value = value ?? defaultInputNumberValue
+    setModelValue()
   }
 
   function setModelValue() {
-    let result = [startValue.value, endValue.value]
+    inputValue.value = isNaN(inputValue.value) ? defaultInputNumberValue : inputValue.value
+
+    let result = [inputValue.value, unitValue.value]
+
     emit('update:modelValue', result)
   }
   return {
-    startValue,
-    endValue,
-    setStartValue,
-    setEndValue,
+    inputValue,
+    unitValue,
+    inputChange,
+    unitChange,
   }
 }

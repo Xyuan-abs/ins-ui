@@ -6,10 +6,20 @@ import { computed } from 'vue'
  * @returns
  */
 export default function (item) {
-  const defaultAttrs = {}
-  const $attrs = computed(() => Object.assign({}, defaultAttrs, item.attr || {}))
+  const inputDefaultAttrs = {
+    placeholder: '请输入' + (item.attr?.[0]?.label ?? ''),
+  }
+
+  const unitDefaultAttrs = {
+    placeholder: '单位',
+    clearable: false,
+  }
+
+  const $inputAttrs = computed(() => Object.assign({}, inputDefaultAttrs, item.attr?.[0] || {}))
+  const $unitAttrs = computed(() => Object.assign({}, unitDefaultAttrs, item.attr?.[1] || {}))
 
   return {
-    $attrs,
+    $inputAttrs,
+    $unitAttrs,
   }
 }
