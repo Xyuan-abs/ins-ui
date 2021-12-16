@@ -8,13 +8,7 @@ module.exports = {
     navbar: [
       { text: '主页', link: '/' }, // 导航条
       { text: '组件文档', link: '/guide/' },
-      { text: '知识库', link: '/knowledge/' },
-      { text: 'github',        // 这里是下拉列表展现形式。
-        children: [
-          { text: 'focus-outside', link: 'https://github.com/TaoXuSheng/focus-outside' },
-          { text: 'stylus-converter', link: 'https://github.com/TaoXuSheng/stylus-converter' },
-        ]
-      }
+      { text: 'github',link: 'https://github.com/Xyuan-abs/ins-ui'}
     ],
     // 为以下路由添加侧边栏
     sidebar:{
@@ -29,32 +23,6 @@ module.exports = {
           ]
         },
       ],
-      '/knowledge/': [
-        {
-          text: 'CSS知识库',
-          collapsable: false,
-          children: [
-          ]
-        },
-        {
-          text: 'JS知识库',
-          collapsable: false,
-          children: [
-          ]
-        },
-        {
-          text: 'node知识库',
-          collapsable: false,
-          children: [
-          ]
-        },
-        {
-          text: 'vue知识库',
-          collapsable: false,
-          children: [
-          ]
-        }
-      ]
     },
   },
   plugins: [
