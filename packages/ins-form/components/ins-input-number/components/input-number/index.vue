@@ -43,8 +43,8 @@ function change() {
 .ins-input-number {
   font-family: inherit;
 
-  /* 解决校验错误时，-+号上下移动问题 */
   :deep(.el-input-number) {
+    /* 解决校验错误时，-+号上下移动问题 */
     width: 100%;
     .el-input-number__decrease,
     .el-input-number__increase {
