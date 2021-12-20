@@ -6,10 +6,10 @@
  -->
 <script setup>
 import { ref } from 'vue'
-import InsInput from '../../ins-input'
-import InsInputNumber from '../../ins-input-number'
-import InsSelect from '../../ins-select'
-import InsDatePicker from '../../ins-date-picker'
+import InsInput from '../../ins-input/index.js'
+import InsInputNumber from '../../ins-input-number/index.js'
+import InsSelect from '../../ins-select/index.js'
+import InsDatePicker from '../../ins-date-picker/index.js'
 
 import useSetAttrs from '../composables/useSetAttrs'
 import useSetFormItem from '../composables/useSetFormItem'
