@@ -1,8 +1,17 @@
 {
   "name": "ins-form",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.0.1",
   "author": "Xyuan",
   "license": "MIT",
-  "private": true
+  "private": false,
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  }
 }
