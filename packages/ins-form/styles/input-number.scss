@@ -1,0 +1,18 @@
+.ins-input-number {
+  .el-input-number {
+    width: 100%;
+
+    &.hidden-crease {
+      .el-input-number__decrease,
+      .el-input-number__increase {
+        display: none;
+      }
+      .el-input {
+        .el-input__inner {
+          padding: 0 10px;
+          text-align: left;
+        }
+      }
+    }
+  }
+}
