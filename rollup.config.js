@@ -25,9 +25,9 @@ const getPlugins = () => {
     postcss({
       plugins: [autoprefixer],
       // 把 css 插入到 style 中
-      inject: true,
+      // inject: true,
       // 把 css 放到和js同一目录
-      // extract: true
+      extract: 'style.css',
       // Minimize CSS, boolean or options for cssnano.
       minimize: !isDev,
       // Enable sourceMap.
