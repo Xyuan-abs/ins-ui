@@ -6,10 +6,13 @@
  -->
 <script setup>
 import { ref } from 'vue'
-import InsInput from '../../ins-input/index.js'
-import InsInputNumber from '../../ins-input-number/index.js'
-import InsSelect from '../../ins-select/index.js'
-import InsDatePicker from '../../ins-date-picker/index.js'
+
+import InsText from '../../ins-text/index.vue'
+
+import InsInput from '../../ins-input'
+import InsInputNumber from '../../ins-input-number'
+import InsSelect from '../../ins-select'
+import InsDatePicker from '../../ins-date-picker'
 
 import useSetAttrs from '../composables/useSetAttrs'
 import useSetFormItem from '../composables/useSetFormItem'
@@ -17,6 +20,10 @@ import useSubmit from '../composables/useSubmit'
 import useSetRules from '../composables/useSetRules'
 
 let props = defineProps({
+  dynamicForm: {
+    type: Object,
+    default: () => {},
+  },
   hasSubmit: {
     type: Boolean,
     default: true,
@@ -25,15 +32,16 @@ let props = defineProps({
     type: String,
     default: '提交',
   },
-  dynamicForm: {
-    type: Object,
-    default: () => {},
-  },
   cols: {
     type: Number,
     default: null,
   },
+  isText: {
+    type: Boolean,
+    default: false,
+  },
 })
+
 let emit = defineEmits(['change', 'save', 'reset'])
 
 // 属性
@@ -61,38 +69,41 @@ defineExpose({
 </script>
 
 <template>
-  <div class="ins-form">
-    <el-form
-      v-if="dynamicForm"
-      ref="ruleFormRef"
-      :model="dynamicForm"
-      class="el-form-dynamic"
-      v-bind="$attrs"
-    >
-      <template v-for="(item, index) in dynamicForm.form">
-        <!-- 自定义表单项 插槽 -->
-        <slot v-if="item.isSlot === true" :name="item.name" :item="item" :index="index" />
+  <el-form
+    v-if="dynamicForm"
+    ref="ruleFormRef"
+    :model="dynamicForm"
+    class="ins-form"
+    v-bind="$attrs"
+  >
+    <template v-for="(item, index) in dynamicForm.form">
+      <!-- 自定义表单项 插槽 -->
+      <slot v-if="item.isSlot === true" :name="item.name" :item="item" :index="index" />
 
-        <!-- 自定义表单项 动态组件 -->
-        <component
-          :is="item.component"
-          v-else-if="item.component"
-          :key="`form-item-${index}`"
-          :item="item"
-        />
+      <!-- 自定义表单项 动态组件 -->
+      <component
+        :is="item.component"
+        v-else-if="item.component"
+        :key="`form-item-${index}`"
+        :item="item"
+      />
 
-        <!-- 其他 表单项 -->
-        <el-form-item
-          v-else
-          v-show="item.show !== false"
-          :key="`form-item-${item.name}`"
-          class="form-item"
-          :prop="item.required ? undefined : 'form[' + index + '].value'"
-          :label="item.label"
-          :rules="setRules(item)"
-          :required="item.required"
-          :style="setStyle(cols, item)"
-        >
+      <!-- 其他 表单项 -->
+      <el-form-item
+        v-else
+        v-show="item.show !== false"
+        :key="`form-item-${item.name}`"
+        class="form-item"
+        :prop="item.required ? undefined : 'form[' + index + '].value'"
+        :label="item.label"
+        :rules="setRules(item)"
+        :required="item.required"
+        :style="setStyle(cols, item)"
+      >
+        <!-- 存文本 -->
+        <ins-text v-if="isText || item.isText" :item="item" />
+        <!-- 具体组件 -->
+        <template v-else>
           <!-- input -->
           <ins-input
             v-if="item.element === 'input'"
@@ -127,31 +138,28 @@ defineExpose({
             :index="index"
             @change="change(item)"
           />
-        </el-form-item>
-      </template>
-
-      <!-- 表单按钮 -->
-      <el-form-item v-if="hasSubmit" class="search-btn form-item">
-        <el-button type="primary" @click="submitForm">
-          {{ submitText }}
-        </el-button>
-        <el-button @click="resetForm"> 重置 </el-button>
+        </template>
       </el-form-item>
-    </el-form>
-  </div>
+    </template>
+
+    <!-- 表单按钮 -->
+    <el-form-item v-if="hasSubmit" class="search-btn form-item">
+      <el-button type="primary" @click="submitForm">
+        {{ submitText }}
+      </el-button>
+      <el-button @click="resetForm"> 重置 </el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .ins-form {
-  font-family: inherit;
-  .el-form-dynamic {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-flow: row wrap;
-    .form-item {
-      width: 100%;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  .form-item {
+    width: 100%;
   }
 }
 </style>

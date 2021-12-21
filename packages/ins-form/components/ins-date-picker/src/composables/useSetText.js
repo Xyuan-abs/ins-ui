@@ -4,18 +4,19 @@
  * @returns 表单项 类型
  */
 export default function (item) {
-  function getText() {
-    let result = ''
+  let result = ''
 
-    if (item.elementType.includes('Range')) {
-      result = `${item.value?.[0] || ''} - ${item.value?.[1] || ''}`
-    } else {
-      result = `${item.value}`
-    }
+  if (item.elementType?.includes('Range')) {
+    let separator = item['range-separator'] || '至'
 
-    return result
+    let startText = item.value?.[0] || ''
+    let endText = item.value?.[1] || ''
+    let separatorText = startText && endText ? separator : ''
+
+    result = `${startText} ${separatorText} ${endText}`
+  } else {
+    result = `${item.value ?? ''}`
   }
-  return {
-    getText,
-  }
+
+  return result
 }

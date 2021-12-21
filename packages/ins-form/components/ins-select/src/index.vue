@@ -5,8 +5,6 @@
   时间：2021年11月3日14:51:38
  -->
 <script setup>
-import ItemText from './ItemText.vue'
-
 import useSetElementType from './composables/useSetElementType.js'
 import useSetAttrs from './composables/useSetAttrs.js'
 
@@ -42,11 +40,8 @@ function change() {
 
 <template>
   <div class="ins-select">
-    <!-- 文本 -->
-    <item-text v-if="item.isText" :item="item" />
-
     <!-- 组件 -->
-    <el-select v-else v-model="selectValue" v-bind="$attrs" @change="change($event)">
+    <el-select v-model="selectValue" v-bind="$attrs" @change="change($event)">
       <!-- 分组 -->
       <template v-if="elementType === 'group'">
         <el-option-group v-for="group in item.options" :key="group.label" :label="group.label">
@@ -76,10 +71,9 @@ function change() {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .ins-select {
-  font-family: inherit;
-  :deep(.el-select) {
+  .el-select {
     width: 100%;
   }
 }

@@ -47,7 +47,7 @@ function change() {
 </script>
 
 <template>
-  <div class="ins-input-number-with-unit">
+  <div class="ins-input-number__with-unit">
     <!-- 值 -->
     <el-form-item
       class="number-with-unit-input"
@@ -56,6 +56,7 @@ function change() {
     >
       <el-input-number
         v-model="inputValue"
+        class="hidden-crease"
         v-bind="$inputAttrs"
         @change="inputChange($event), change"
       />
@@ -79,8 +80,8 @@ function change() {
   </div>
 </template>
 
-<style lang="scss" scoped>
-.ins-input-number-with-unit {
+<style lang="scss">
+.ins-input-number__with-unit {
   font-family: inherit;
   display: flex;
   align-items: center;
@@ -88,26 +89,14 @@ function change() {
 
   .number-with-unit-input {
     flex: 1;
-    :deep(.el-input-number) {
-      width: 100%;
-      .el-input-number__decrease,
-      .el-input-number__increase {
-        display: none;
-      }
-      .el-input {
-        .el-input__inner {
-          padding: 0 10px;
-          text-align: left;
-        }
-      }
-    }
   }
 
   .number-with-unit-select {
     flex-shrink: 0;
-    width: 100px;
+    width: 30%;
+    min-width: 100px;
     margin-left: 5px;
-    :deep(.el-select) {
+    .el-select {
       width: 100%;
       .el-input__validateIcon {
         display: none;
