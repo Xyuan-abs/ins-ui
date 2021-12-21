@@ -65,6 +65,8 @@ function change(item) {
 // 暴露出去的 属性和方法
 defineExpose({
   toSaveData,
+  submitForm,
+  resetForm,
 })
 </script>
 
