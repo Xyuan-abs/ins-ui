@@ -1,19 +1,21 @@
 {
-  "name": "ins-form",
+  "name": "@ins-ui/ins-form",
   "version": "1.0.2-alpha.0",
   "author": "Xyuan",
   "license": "MIT",
   "private": false,
-  "scripts": {
-    "build": "rollup -c"
-  },
   "files": [
     "lib",
     "README.md"
   ],
   "main": "./lib/ins-form.umd.js",
   "module": "./lib/ins-form.es.js",
-  "publishConfig": {
-    "access": "public"
+  "keywords": [
+    "vue3",
+    "element-plus",
+    "components"
+  ],
+  "peerDependencies": {
+    "vue": "^3.2.26"
   }
 }
