@@ -5,8 +5,6 @@
   时间：2021年11月3日14:51:38
  -->
 <script setup>
-import ItemText from './ItemText.vue'
-
 import { useVModel } from '@vueuse/core'
 
 import useSetElementType from './composables/useSetElementType.js'
@@ -41,14 +39,8 @@ function inputChange() {
 
 <template>
   <div class="ins-input">
-    <!-- 文本 -->
-    <item-text v-if="item.isText" :item="item" />
-
-    <!-- 组件 -->
-    <template v-else>
-      <!-- 普通input -->
-      <el-input v-model="inputValue" v-bind="$attrs" @change="inputChange($event)" />
-    </template>
+    <!-- 普通input -->
+    <el-input v-model="inputValue" v-bind="$attrs" @change="inputChange($event)" />
   </div>
 </template>
 

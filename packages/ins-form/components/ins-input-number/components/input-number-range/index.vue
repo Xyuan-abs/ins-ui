@@ -45,7 +45,7 @@ function change() {
 </script>
 
 <template>
-  <div class="ins-input-number-range">
+  <div class="ins-input-number__range">
     <!-- 起始值 -->
     <el-form-item
       :key="`form-item-${item.name}-number-range-start`"
@@ -54,6 +54,7 @@ function change() {
       :rules="startRules"
     >
       <el-input-number
+        class="hidden-crease"
         :model-value="startValue"
         v-bind="$startAttr"
         @change="setStartValue($event), change"
@@ -71,6 +72,7 @@ function change() {
       :rules="endRules"
     >
       <el-input-number
+        class="hidden-crease"
         :model-value="endValue"
         v-bind="$endAttr"
         @change="setEndValue($event), change"
@@ -79,8 +81,8 @@ function change() {
   </div>
 </template>
 
-<style lang="scss" scoped>
-.ins-input-number-range {
+<style lang="scss">
+.ins-input-number__range {
   font-family: inherit;
   display: flex;
   align-items: center;
@@ -88,19 +90,6 @@ function change() {
   .number-range-item {
     flex: 1;
     margin-bottom: 0;
-    :deep(.el-input-number) {
-      width: 100%;
-      .el-input-number__decrease,
-      .el-input-number__increase {
-        display: none;
-      }
-      .el-input {
-        .el-input__inner {
-          padding: 0 10px;
-          text-align: left;
-        }
-      }
-    }
   }
   .range-separator {
     display: inline-block;

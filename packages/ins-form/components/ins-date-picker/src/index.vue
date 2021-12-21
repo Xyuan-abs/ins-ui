@@ -7,9 +7,7 @@
 <script setup>
 import useSetElementType from './composables/useSetElementType.js'
 import useSetAttrs from './composables/useSetAttrs.js'
-// import useSetModel from './composables/useSetModel.js'
 
-import ItemText from './ItemText.vue'
 import { useVModel } from '@vueuse/core'
 
 let props = defineProps({
@@ -23,6 +21,7 @@ let props = defineProps({
   },
 })
 let emit = defineEmits(['update:modelValue', 'change'])
+
 // 类型
 let { elementType } = useSetElementType(props.item)
 // attr
@@ -37,17 +36,15 @@ function change() {
 
 <template>
   <div class="ins-date-picker">
-    <!-- 文本 -->
-    <item-text v-if="item.isText" :item="item" />
     <!-- 组件 -->
-    <el-date-picker v-else v-model="dateValue" v-bind="$attrs" @change="change" />
+    <el-date-picker v-model="dateValue" v-bind="$attrs" @change="change" />
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .ins-date-picker {
   font-family: inherit;
-  :deep(.el-date-editor) {
+  .el-date-editor {
     width: 100%;
     .el-range-separator {
       width: 25px;

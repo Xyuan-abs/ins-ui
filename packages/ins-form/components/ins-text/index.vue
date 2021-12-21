@@ -13,11 +13,9 @@ let props = defineProps({
     default: () => {},
   },
 })
-let { getText } = useSetText(props.item)
+let { text } = useSetText(props.item)
 </script>
 
 <template>
-  <span class="ins-text">
-    {{ getText() }}
-  </span>
+  <span class="ins-text"> {{ text }} </span>
 </template>
