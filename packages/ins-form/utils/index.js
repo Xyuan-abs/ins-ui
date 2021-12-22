@@ -5,5 +5,5 @@
  * @returns
  */
 export function getLabelByValue(value, options) {
-  return options.find((d) => d.value === value)?.label ?? value
+  return options?.find((d) => d.value === value)?.label ?? value
 }

@@ -1,4 +1,4 @@
-import getLabelByValue from '../../../../utils/index.js'
+import { getLabelByValue } from '../../../../utils/index.js'
 
 /**
  * 获取表单项 类型

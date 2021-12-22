@@ -1,4 +1,4 @@
-import getLabelByValue from '../../../../utils/index'
+import { getLabelByValue } from '../../../../utils/index'
 
 /**
  * 获取表单项 类型
