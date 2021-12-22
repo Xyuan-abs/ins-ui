@@ -13,6 +13,7 @@ import InsInput from '../../ins-input'
 import InsInputNumber from '../../ins-input-number'
 import InsSelect from '../../ins-select'
 import InsDatePicker from '../../ins-date-picker'
+import InsCheckbox from '../../ins-checkbox'
 
 import useSetAttrs from '../composables/useSetAttrs'
 import useSetFormItem from '../composables/useSetFormItem'
@@ -135,6 +136,15 @@ defineExpose({
           <!-- ins-date-picker -->
           <ins-date-picker
             v-if="item.element === 'datePicker'"
+            v-model:modelValue="item.value"
+            :item="item"
+            :index="index"
+            @change="change(item)"
+          />
+
+          <!-- ins-checkbox -->
+          <ins-checkbox
+            v-if="item.element === 'checkbox'"
             v-model:modelValue="item.value"
             :item="item"
             :index="index"

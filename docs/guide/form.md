@@ -14,7 +14,7 @@ description: Form 动态表单2
 
 - 安装依赖
 
-```cmd
+```sh-session
 npm i element-plus
 npm i @ins-ui/ins-form
 
@@ -27,7 +27,7 @@ yarn add @ins-ui/ins-form
 
 - 导入项目
 
-```js TOMORROW NIGHT
+```js
 // main.js
 
 import { createApp } from 'vue'
@@ -366,7 +366,7 @@ function submit(value) {
 | ----------- | -------- | --------------- | ------ |
 | elementType | 二级类型 | input、textarea | input  |
 
-:tada: 其他参考通用配置
+:tada: 其他参考[通用配置](#formitem-通用配置)
 
 ## select
 
@@ -667,7 +667,7 @@ function submit(value) {
 | elementType | 二级类型             | select、group | select |
 | optionsItem | 自定义的 option 组件 | —             | —      |
 
-:tada: 其他参考通用配置
+:tada: 其他参考[通用配置](#formitem-通用配置)
 
 ## inputNumber
 
@@ -801,7 +801,7 @@ function submit(value) {
 | rules       | 校验规则                                                            | \[ startRulesArray,endRulesArray\] \| rulesArray | —      |
 | options     | numberWithUnit 的单位数组，其他类型无效                             | —                                                | —      |
 
-:tada: 其他参考通用配置
+:tada: 其他参考[通用配置](#formitem-通用配置)
 
 ::: tip numberRange
 
@@ -1016,4 +1016,140 @@ function submit(value) {
 | ----------- | -------- | ------------------------------------------------------------------------ | ------ |
 | elementType | 二级类型 | date、month、year、week、dateTime、dateRange、 monthRange、dateTimeRange | date   |
 
-:tada: 其他参考通用配置
+:tada: 其他参考[通用配置](#formitem-通用配置)
+
+## checkbox
+
+### 示例
+
+::: demo
+
+```vue
+<script setup>
+import { reactive } from 'vue'
+
+let dynamicForm = reactive({
+  form: [
+    {
+      name: 'checkbox',
+      label: 'checkbox',
+      value: [],
+      element: 'checkbox',
+      options: [
+        { label: 'label1', value: 'value1' },
+        { label: 'label2', value: 'value2' },
+        { label: 'label3', value: 'value3' },
+      ],
+    },
+    {
+      name: 'checkboxBorder',
+      label: 'checkboxBorder',
+      value: [],
+      element: 'checkbox',
+      elementType: 'borderBox',
+      options: [
+        { label: 'label1', value: 'value1' },
+        { label: 'label2', value: 'value2' },
+        { label: 'label3', value: 'value3' },
+      ],
+    },
+    {
+      name: 'checkboxButton',
+      label: 'checkboxButton',
+      value: [],
+      element: 'checkbox',
+      elementType: 'buttonBox',
+      options: [
+        { label: 'label1', value: 'value1' },
+        { label: 'label2', value: 'value2' },
+        { label: 'label3', value: 'value3' },
+      ],
+    },
+  ],
+})
+
+function submit(value) {
+  console.log(value)
+}
+</script>
+
+<template>
+  <ins-form :dynamicForm="dynamicForm" :label-width="'120px'" @save="submit" />
+</template>
+```
+
+:::
+
+#### 表单校验
+
+::: demo
+
+```vue
+<script setup>
+import { reactive } from 'vue'
+
+let dynamicForm = reactive({
+  form: [
+    {
+      name: 'checkbox',
+      label: 'checkbox',
+      value: [],
+      element: 'checkbox',
+      options: [
+        { label: 'label1', value: 'value1' },
+        { label: 'label2', value: 'value2' },
+        { label: 'label3', value: 'value3' },
+      ],
+      rules: [{ required: true, trigger: 'change' }],
+    },
+    {
+      name: 'checkboxBorder',
+      label: 'checkboxBorder',
+      value: [],
+      element: 'checkbox',
+      elementType: 'borderBox',
+      options: [
+        { label: 'label1', value: 'value1' },
+        { label: 'label2', value: 'value2' },
+        { label: 'label3', value: 'value3' },
+      ],
+      rules: [{ required: true, trigger: 'change' }],
+    },
+    {
+      name: 'checkboxButton',
+      label: 'checkboxButton',
+      value: [],
+      element: 'checkbox',
+      elementType: 'buttonBox',
+      options: [
+        { label: 'label1', value: 'value1' },
+        { label: 'label2', value: 'value2' },
+        { label: 'label3', value: 'value3' },
+      ],
+      rules: [{ required: true, trigger: 'change' }],
+    },
+  ],
+})
+
+function submit(value) {
+  console.log(value)
+}
+</script>
+
+<template>
+  <ins-form :dynamicForm="dynamicForm" :label-width="'150px'" @save="submit" />
+</template>
+```
+
+:::
+
+### checkbox 的 formItem 配置
+
+| 属性             | 说明                  | 可选值                         | 默认值   |
+| ---------------- | --------------------- | ------------------------------ | -------- |
+| elementType      | 二级类型              | checkbox、borderBox、buttonBox | checkbox |
+| attr             | checkbox-group 的配置 | —                              | —        |
+| options          | checkbox 列表         | —                              | —        |
+| optionsItem.attr | checkbox 的配置       | —                              | —        |
+
+:tada: 其他参考[通用配置](#formitem-通用配置)
