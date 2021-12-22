@@ -8,7 +8,7 @@ module.exports = {
     // 添加导航栏
     navbar: [
       { text: '主页', link: '/' }, // 导航条
-      { text: '组件文档', link: '/guide/' },
+      { text: '组件文档', link: '/guide/form' },
       { text: 'github',link: 'https://github.com/Xyuan-abs/ins-ui'}
     ],
     // 为以下路由添加侧边栏
@@ -18,7 +18,7 @@ module.exports = {
           text: '组件',
           children: [
             {
-              text: 'Form 动态表单',
+              text: 'InsForm 动态表单',
               link:'/guide/form',
             }
           ]
