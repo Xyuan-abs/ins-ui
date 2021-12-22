@@ -8,12 +8,12 @@ import { getLabelByValue } from '../../../../utils/index.js'
 export default function (item) {
   let result = ''
 
-  let option = item.option
+  let options = item.options
   let values = item.value
 
   result = values
     ?.map((value) => {
-      return getLabelByValue(value, option)
+      return getLabelByValue(value, options)
     })
     .join('、')
 

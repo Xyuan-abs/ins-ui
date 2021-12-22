@@ -2,7 +2,7 @@
   名称-ins-checkbox
   版本：1.0.0 
   作者：Xyuan
-  时间：2021年11月25日14:02:11
+  时间：2021年12月22日16:08:32
  -->
 <script setup>
 import useSetElementType from './composables/useSetElementType.js'
