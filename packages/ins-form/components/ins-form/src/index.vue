@@ -15,6 +15,7 @@ import InsSelect from '../../ins-select'
 import InsDatePicker from '../../ins-date-picker'
 import InsCheckbox from '../../ins-checkbox'
 import InsRadio from '../../ins-radio'
+import InsCascader from '../../ins-cascader'
 
 import useSetAttrs from '../composables/useSetAttrs'
 import useSetFormItem from '../composables/useSetFormItem'
@@ -155,6 +156,15 @@ defineExpose({
           <!-- ins-radio -->
           <ins-radio
             v-if="item.element === 'radio'"
+            v-model:modelValue="item.value"
+            :item="item"
+            :index="index"
+            @change="change(item)"
+          />
+
+          <!-- ins-cascader -->
+          <ins-cascader
+            v-if="item.element === 'cascader'"
             v-model:modelValue="item.value"
             :item="item"
             :index="index"
