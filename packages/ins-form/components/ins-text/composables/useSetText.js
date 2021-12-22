@@ -5,6 +5,7 @@ import getInputNumberText from '../../ins-input-number/src/composables/useSetTex
 import getSelectText from '../../ins-select/src/composables/useSetText'
 import getDatePickerText from '../../ins-date-picker/src/composables/useSetText'
 import getCheckboxText from '../../ins-checkbox/src/composables/useSetText'
+import getRadioText from '../../ins-radio/src/composables/useSetText'
 
 const textMap = {
   input: getInputText,
@@ -12,6 +13,7 @@ const textMap = {
   select: getSelectText,
   datePicker: getDatePickerText,
   checkbox: getCheckboxText,
+  radio: getRadioText,
 }
 
 export default function (item) {

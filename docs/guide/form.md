@@ -103,6 +103,17 @@ let dynamicForm = reactive({
         { label: 'label3', value: 'value3' },
       ],
     },
+    {
+      name: 'radio',
+      label: 'radio',
+      value: null,
+      element: 'radio',
+      options: [
+        { label: 'label1', value: 'value1' },
+        { label: 'label2', value: 'value2' },
+        { label: 'label3', value: 'value3' },
+      ],
+    },
   ],
 })
 
@@ -172,7 +183,19 @@ let dynamicForm = reactive({
         { label: 'label2', value: 'value2' },
         { label: 'label3', value: 'value3' },
       ],
-      col: 2,
+      col: 1,
+    },
+    {
+      name: 'radio',
+      label: 'radio',
+      value: null,
+      element: 'radio',
+      options: [
+        { label: 'label1', value: 'value1' },
+        { label: 'label2', value: 'value2' },
+        { label: 'label3', value: 'value3' },
+      ],
+      col: 1,
     },
   ],
 })
@@ -197,6 +220,8 @@ function submit(value) {
 <script setup>
 import { reactive } from 'vue'
 
+let cols = 3
+
 let dynamicForm = reactive({
   form: [
     {
@@ -204,6 +229,7 @@ let dynamicForm = reactive({
       label: 'input',
       value: '这是一个input',
       element: 'input',
+      col: 1,
     },
     {
       name: 'select',
@@ -216,19 +242,21 @@ let dynamicForm = reactive({
           value: 'optionsValue',
         },
       ],
+      col: 1,
     },
     {
       name: 'date',
       label: 'date',
       value: '2021-11-11',
       element: 'datePicker',
+      col: 1,
     },
     {
       name: 'input-number',
       label: 'inputNumber',
       value: 100,
       element: 'inputNumber',
-      width: '300px',
+      col: 1,
     },
     {
       name: 'checkbox',
@@ -240,13 +268,26 @@ let dynamicForm = reactive({
         { label: 'label2', value: 'value2' },
         { label: 'label3', value: 'value3' },
       ],
+      col: 1,
+    },
+    {
+      name: 'radio',
+      label: 'radio',
+      value: 'value1',
+      element: 'radio',
+      options: [
+        { label: 'label1', value: 'value1' },
+        { label: 'label2', value: 'value2' },
+        { label: 'label3', value: 'value3' },
+      ],
+      col: 1,
     },
   ],
 })
 </script>
 
 <template>
-  <ins-form :dynamicForm="dynamicForm" :is-text="true" :has-submit="false" />
+  <ins-form :dynamicForm="dynamicForm" :is-text="true" :cols="cols" :has-submit="false" />
 </template>
 ```
 
@@ -1201,10 +1242,10 @@ import { reactive } from 'vue'
 let dynamicForm = reactive({
   form: [
     {
-      name: 'checkbox',
-      label: 'checkbox',
-      value: [],
-      element: 'checkbox',
+      name: 'radio',
+      label: 'radio',
+      value: null,
+      element: 'radio',
       options: [
         { label: 'label1', value: 'value1' },
         { label: 'label2', value: 'value2' },
@@ -1212,10 +1253,10 @@ let dynamicForm = reactive({
       ],
     },
     {
-      name: 'checkboxBorder',
-      label: 'checkboxBorder',
-      value: [],
-      element: 'checkbox',
+      name: 'radioBorder',
+      label: 'radioBorder',
+      value: null,
+      element: 'radio',
       elementType: 'borderBox',
       options: [
         { label: 'label1', value: 'value1' },
@@ -1224,10 +1265,10 @@ let dynamicForm = reactive({
       ],
     },
     {
-      name: 'checkboxButton',
-      label: 'checkboxButton',
-      value: [],
-      element: 'checkbox',
+      name: 'radioButton',
+      label: 'radioButton',
+      value: null,
+      element: 'radio',
       elementType: 'buttonBox',
       options: [
         { label: 'label1', value: 'value1' },
@@ -1261,10 +1302,10 @@ import { reactive } from 'vue'
 let dynamicForm = reactive({
   form: [
     {
-      name: 'checkbox',
-      label: 'checkbox',
-      value: [],
-      element: 'checkbox',
+      name: 'radio',
+      label: 'radio',
+      value: null,
+      element: 'radio',
       options: [
         { label: 'label1', value: 'value1' },
         { label: 'label2', value: 'value2' },
@@ -1273,10 +1314,10 @@ let dynamicForm = reactive({
       rules: [{ required: true, trigger: 'change' }],
     },
     {
-      name: 'checkboxBorder',
-      label: 'checkboxBorder',
-      value: [],
-      element: 'checkbox',
+      name: 'radioBorder',
+      label: 'radioBorder',
+      value: null,
+      element: 'radio',
       elementType: 'borderBox',
       options: [
         { label: 'label1', value: 'value1' },
@@ -1286,10 +1327,10 @@ let dynamicForm = reactive({
       rules: [{ required: true, trigger: 'change' }],
     },
     {
-      name: 'checkboxButton',
-      label: 'checkboxButton',
-      value: [],
-      element: 'checkbox',
+      name: 'radioButton',
+      label: 'radioButton',
+      value: null,
+      element: 'radio',
       elementType: 'buttonBox',
       options: [
         { label: 'label1', value: 'value1' },
@@ -1315,11 +1356,11 @@ function submit(value) {
 
 ### radio 的 formItem 配置
 
-| 属性             | 说明                  | 可选值                         | 默认值   |
-| ---------------- | --------------------- | ------------------------------ | -------- |
-| elementType      | 二级类型              | checkbox、borderBox、buttonBox | checkbox |
-| attr             | checkbox-group 的配置 | —                              | —        |
-| options          | checkbox 列表         | —                              | —        |
-| optionsItem.attr | checkbox 的配置       | —                              | —        |
+| 属性             | 说明               | 可选值                      | 默认值 |
+| ---------------- | ------------------ | --------------------------- | ------ |
+| elementType      | 二级类型           | radio、borderBox、buttonBox | radio  |
+| attr             | radio-group 的配置 | —                           | —      |
+| options          | radio 列表         | —                           | —      |
+| optionsItem.attr | radio 的配置       | —                           | —      |
 
 :tada: 其他参考[通用配置](#formitem-通用配置)
