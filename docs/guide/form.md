@@ -322,7 +322,10 @@ let dynamicForm = reactive({
     {
       name: 'cascader',
       label: 'cascader',
-      value: ['value1', 'axure'],
+      value: [
+        ['value1', 'axure'],
+        ['value1', 'sketch'],
+      ],
       options: [
         {
           label: 'label1',
@@ -336,6 +339,11 @@ let dynamicForm = reactive({
         { label: 'label2', value: 'value2' },
       ],
       element: 'cascader',
+      attr: {
+        props: {
+          multiple: true,
+        },
+      },
       col: 1,
     },
   ],
@@ -343,7 +351,13 @@ let dynamicForm = reactive({
 </script>
 
 <template>
-  <ins-form :dynamicForm="dynamicForm" :is-text="true" :cols="cols" :has-submit="false" />
+  <ins-form
+    :dynamicForm="dynamicForm"
+    :label-width="'110px'"
+    :is-text="true"
+    :cols="cols"
+    :has-submit="false"
+  />
 </template>
 ```
 
