@@ -7,16 +7,6 @@
 <script setup>
 import { ref } from 'vue'
 
-import InsText from '../../ins-text/index.vue'
-
-import InsInput from '../../ins-input'
-import InsInputNumber from '../../ins-input-number'
-import InsSelect from '../../ins-select'
-import InsDatePicker from '../../ins-date-picker'
-import InsCheckbox from '../../ins-checkbox'
-import InsRadio from '../../ins-radio'
-import InsCascader from '../../ins-cascader'
-
 import useSetAttrs from '../composables/useSetAttrs'
 import useSetFormItem from '../composables/useSetFormItem'
 import useSubmit from '../composables/useSubmit'
