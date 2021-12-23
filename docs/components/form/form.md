@@ -1,12 +1,11 @@
 ---
 lang: zh-CN
 title: Form 动态表单
-description: Form 动态表单2
 ---
 
 # InsForm 动态表单
 
-由输入框、选择器、单选框、多选框、时间选择器等控件组成，用以收集、校验、提交数据
+提供 Input、InputNumber、Select、Cascader、DatePicker、Checkbox、Radio 等表单控件，实现通过简单配置即可生成动态表单
 
 [[toc]]
 

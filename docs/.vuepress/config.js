@@ -57,7 +57,7 @@ module.exports = {
                   link:'/components/form/cascader',
                 },
                 {
-                  text: 'DataPicker',
+                  text: 'DatePicker',
                   link:'/components/form/date-picker',
                 },
                 {
