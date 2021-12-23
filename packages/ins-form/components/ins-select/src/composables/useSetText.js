@@ -1,7 +1,4 @@
-/* 根据 值 获取 label */
-function getLabelByValue(value, options) {
-  return options.find((d) => d.value === value)?.label ?? value
-}
+import { getLabelByValue } from '../../../../utils/index'
 
 /**
  * 获取表单项 类型

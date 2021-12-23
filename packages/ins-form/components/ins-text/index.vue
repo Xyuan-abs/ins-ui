@@ -19,3 +19,9 @@ let { text } = useSetText(props.item)
 <template>
   <span class="ins-text"> {{ text }} </span>
 </template>
+
+<style lang="scss">
+.ins-text {
+  white-space: pre-wrap;
+}
+</style>

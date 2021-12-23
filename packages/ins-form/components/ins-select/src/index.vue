@@ -51,7 +51,7 @@ function change() {
             :label="option.label"
             :value="option.value"
           >
-            <component :is="item.optionsItem" :option="option" />
+            <component :is="item.optionsItem" v-if="item.optionsItem" :option="option" />
           </el-option>
         </el-option-group>
       </template>
@@ -64,7 +64,7 @@ function change() {
           :label="option.label"
           :value="option.value"
         >
-          <component :is="item.optionsItem" :option="option" />
+          <component :is="item.optionsItem" v-if="item.optionsItem" :option="option" />
         </el-option>
       </template>
     </el-select>
