@@ -50,17 +50,17 @@ let emit = defineEmits(['change', 'save', 'reset'])
 // 属性
 let { $attrs } = useSetAttrs()
 
-// 表单项配置
+//表单项样式
 let { setStyle } = useSetFormItem(props.cols)
 
-// 表单项配置
+// rules
 let { setRules } = useSetRules(props.cols)
 
 // 提交、重置
 let ruleFormRef = ref(null)
 let { toSaveData, submitForm, resetForm } = useSubmit(ruleFormRef, props.dynamicForm, emit)
 
-// 表单项值变化时间
+// 表单项值change事件
 function change(item) {
   emit('change', item)
 }
@@ -100,12 +100,12 @@ defineExpose({
         :key="`form-item-${item.name}`"
         class="form-item"
         :prop="item.required ? undefined : 'form[' + index + '].value'"
-        :label="item.label"
+        :label="item.label + (isText || item.isText ? ' :' : '')"
         :rules="setRules(item)"
         :required="item.required"
         :style="setStyle(cols, item)"
       >
-        <!-- 存文本 -->
+        <!-- 纯文本 -->
         <ins-text v-if="isText || item.isText" :item="item" />
         <!-- 具体组件 -->
         <template v-else>

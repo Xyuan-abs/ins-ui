@@ -6,7 +6,9 @@ import getSelectText from '../../ins-select/src/composables/useSetText'
 import getDatePickerText from '../../ins-date-picker/src/composables/useSetText'
 import getCheckboxText from '../../ins-checkbox/src/composables/useSetText'
 import getRadioText from '../../ins-radio/src/composables/useSetText'
+import getCascader from '../../ins-cascader/src/composables/useSetText'
 
+// get by element
 const textMap = {
   input: getInputText,
   inputNumber: getInputNumberText,
@@ -14,10 +16,11 @@ const textMap = {
   datePicker: getDatePickerText,
   checkbox: getCheckboxText,
   radio: getRadioText,
+  cascader: getCascader,
 }
 
-export default function (item) {
-  let text = computed(() => textMap[item?.element]?.(item))
+export default function (formItem) {
+  let text = computed(() => textMap[formItem?.element]?.(formItem))
 
   return {
     text,

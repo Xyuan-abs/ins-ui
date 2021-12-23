@@ -17,5 +17,11 @@ let { text } = useSetText(props.item)
 </script>
 
 <template>
-  <span class="ins-text"> ：{{ text }} </span>
+  <span class="ins-text"> {{ text }} </span>
 </template>
+
+<style lang="scss">
+.ins-text {
+  white-space: pre-wrap;
+}
+</style>
