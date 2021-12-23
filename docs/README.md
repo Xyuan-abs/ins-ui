@@ -3,7 +3,7 @@ home: true
 lang: zh-CN
 actions:
   - text: 前往 →
-    link: /guide/form.md
+    link: /components/form/guid.md
     type: primary
 
 features:
