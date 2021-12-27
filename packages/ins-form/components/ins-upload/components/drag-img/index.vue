@@ -51,12 +51,12 @@ let { loading } = useSetDragImgLoading(props.formItem)
     >
       <div v-loading="loading" class="el-upload-dragger__inner">
         <!-- 未上传 -->
-        <template v-if="!file">
+        <div v-if="!file" class="el-upload-dragger__before-upload center-abs">
           <el-icon :size="67">
             <upload-filled />
           </el-icon>
           <div class="el-upload__text">将图片拖到此处，或<em>点击上传</em></div>
-        </template>
+        </div>
 
         <!-- 已上传 -->
         <template v-else>
@@ -82,12 +82,17 @@ let { loading } = useSetDragImgLoading(props.formItem)
     .el-upload-dragger {
       position: relative;
       .el-upload-dragger__inner {
+        position: relative;
+        width: 100%;
         height: 100%;
-        .el-icon {
-          font-size: 67px;
-          color: var(--el-text-color-placeholder);
-          margin: 40px 0 16px;
+        .el-upload-dragger__before-upload {
+          .el-icon {
+            font-size: 67px;
+            color: var(--el-text-color-placeholder);
+            margin-top: -10px;
+          }
         }
+
         .img-thumbnail {
           width: 100%;
           height: 100%;

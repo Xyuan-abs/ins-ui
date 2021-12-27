@@ -199,8 +199,8 @@ provide('validateField', validateField)
 <style lang="scss">
 .ins-form {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
+  justify-content: flex-start;
   flex-flow: row wrap;
   .form-item {
     width: 100%;

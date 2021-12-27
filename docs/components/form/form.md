@@ -94,8 +94,45 @@ let dynamicForm = reactive({
       ],
       element: 'cascader',
     },
+    {
+      name: 'upload',
+      label: 'upload',
+      value: [],
+      element: 'upload',
+      elementType: 'fileList',
+      attr: {
+        action: 'https://jsonplaceholder.typicode.com/posts/',
+        fileList: [],
+        limit: 2,
+        'before-upload': handleBeforeUpload,
+      },
+      formatterValue: formatterValue,
+      tip: '只能上传 jpg/png 文件，且不超过 500kb',
+      width: '500px',
+    },
   ],
 })
+
+function handleBeforeUpload(file) {
+  const isJPG = file.type === 'image/jpeg'
+  const isPng = file.type === 'image/png'
+  const isLt500k = file.size / 1024 / 1024 < 0.5
+
+  if (!isJPG && !isPng) {
+    ElMessage.error('上传的文件只能是 JPG 或 PNG 格式!')
+    return false
+  }
+  if (!isLt500k) {
+    ElMessage.error('上传的文件大小不能超过 500KB!')
+    return false
+  }
+  return true
+}
+
+function formatterValue(fileListItem) {
+  let { response } = fileListItem
+  return response.id
+}
 
 function submit(value) {
   console.log(value)
@@ -196,8 +233,60 @@ let dynamicForm = reactive({
       element: 'cascader',
       col: 1,
     },
+    {
+      name: 'uploadImgList',
+      label: 'uploadImgList',
+      value: [],
+      element: 'upload',
+      elementType: 'imgList',
+      attr: {
+        action: 'https://jsonplaceholder.typicode.com/posts/',
+        fileList: [],
+        limit: 3,
+        'before-upload': handleBeforeUpload,
+      },
+      formatterValue: formatterValue,
+      tip: '只能上传 jpg/png 文件，且不超过 500kb',
+      col: 3,
+    },
+    {
+      name: 'uploadDragImg',
+      label: 'uploadDragImg',
+      value: null,
+      element: 'upload',
+      elementType: 'dragImg',
+      attr: {
+        action: 'https://jsonplaceholder.typicode.com/posts/',
+        fileList: [],
+        'before-upload': handleBeforeUpload,
+      },
+      formatterValue: formatterValue,
+      tip: '只能上传 jpg/png 文件，且不超过 500kb',
+      col: 2,
+    },
   ],
 })
+
+function formatterValue(fileListItem) {
+  let { url, response } = fileListItem
+  return response.url ? response.url : url
+}
+
+function handleBeforeUpload(file) {
+  const isJPG = file.type === 'image/jpeg'
+  const isPng = file.type === 'image/png'
+  const isLt500k = file.size / 1024 / 1024 < 0.5
+
+  if (!isJPG && !isPng) {
+    ElMessage.error('上传的文件只能是 JPG 或 PNG 格式!')
+    return false
+  }
+  if (!isLt500k) {
+    ElMessage.error('上传的文件大小不能超过 500KB!')
+    return false
+  }
+  return true
+}
 
 function submit(value) {
   console.log(value)
@@ -308,14 +397,74 @@ let dynamicForm = reactive({
       },
       col: 1,
     },
+    {
+      name: 'uploadFileList',
+      label: 'uploadFileList',
+      value: [],
+      element: 'upload',
+      elementType: 'fileList',
+      attr: {
+        fileList: [],
+      },
+      col: 1,
+    },
+    {
+      name: 'uploadDragImg',
+      label: 'uploadDragImg',
+      value: [],
+      element: 'upload',
+      elementType: 'dragImg',
+      attr: {
+        fileList: [],
+      },
+      col: 3,
+    },
+    {
+      name: 'uploadImgList',
+      label: 'uploadImgList',
+      value: [],
+      element: 'upload',
+      elementType: 'imgList',
+      attr: {
+        fileList: [],
+      },
+      col: 3,
+    },
   ],
 })
+
+setTimeout(() => {
+  let url =
+    'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+
+  let fileList = dynamicForm.form.find(
+    (d) => d.element === 'upload' && d.elementType === 'fileList'
+  )
+  fileList.attr.fileList = [
+    {
+      name: 'foodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfood.jpeg',
+      url: url,
+    },
+    { name: 'food2.jpeg', url: url },
+    { name: 'food3.jpeg', url: url },
+  ]
+
+  let imgList = dynamicForm.form.find((d) => d.element === 'upload' && d.elementType === 'imgList')
+  imgList.attr.fileList = [
+    { name: 'food.jpeg', url: url },
+    { name: 'food2.jpeg', url: url },
+    { name: 'food3.jpeg', url: url },
+  ]
+
+  let dragImg = dynamicForm.form.find((d) => d.element === 'upload' && d.elementType === 'dragImg')
+  dragImg.attr.fileList = [{ name: 'food.jpeg', url: url }]
+}, 1000)
 </script>
 
 <template>
   <ins-form
     :dynamicForm="dynamicForm"
-    :label-width="'110px'"
+    :label-width="'120px'"
     :is-text="true"
     :cols="cols"
     :has-submit="false"
