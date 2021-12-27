@@ -365,8 +365,9 @@ let dynamicForm = reactive({
 
 ### InsForm Methods
 
-| 事件名称   | 说明                                                 | 参数 |
-| ---------- | ---------------------------------------------------- | ---- |
-| toSaveData | 触发表单校验，校验失败返回 false,校验成功返回 表单值 | —    |
-| submitForm | 触发提交表单事件                                     | —    |
-| resetForm  | 触发重置事件                                         | —    |
+| 事件名称      | 说明                                                                         | 参数                             |
+| ------------- | ---------------------------------------------------------------------------- | -------------------------------- |
+| toSaveData    | 触发表单校验，校验失败返回 false,校验成功返回 表单值                         | —                                |
+| submitForm    | 触发提交表单事件                                                             | —                                |
+| resetForm     | 触发重置事件                                                                 | —                                |
+| validateField | 校验部分表单项，formItem 的 prop 格式为`form[index].value`，index 为数组顺序 | props：String \| Array，callback |
