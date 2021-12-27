@@ -11,7 +11,7 @@ import useSetAttrs from './composables/useSetAttrs.js'
 import { useVModel } from '@vueuse/core'
 
 let props = defineProps({
-  item: {
+  formItem: {
     type: Object,
     default: () => {},
   },
@@ -23,9 +23,9 @@ let props = defineProps({
 let emit = defineEmits(['update:modelValue', 'change'])
 
 // 类型
-let { elementType } = useSetElementType(props.item)
+let { elementType } = useSetElementType(props.formItem)
 // attr
-let { $groupAttrs, setCheckboxAttrs } = useSetAttrs(props.item, elementType)
+let { $groupAttrs, setCheckboxAttrs } = useSetAttrs(props.formItem, elementType)
 // 值的双向绑定
 let checkboxValue = useVModel(props, 'modelValue', emit)
 
@@ -38,7 +38,7 @@ function change() {
   <div class="ins-checkbox">
     <!-- 组件 -->
     <el-checkbox-group v-model="checkboxValue" v-bind="$groupAttrs" @change="change">
-      <template v-for="option in item.options" :key="option.value">
+      <template v-for="option in formItem.options" :key="option.value">
         <!-- 按钮样式 -->
         <el-checkbox-button
           v-if="elementType === 'buttonBox'"

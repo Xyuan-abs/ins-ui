@@ -2,19 +2,19 @@ import { computed } from 'vue'
 
 /**
  * 获取表单项 attrs
- * @param {*} item 表单项配置
+ * @param {*} formItem 表单项配置
  * @param {*} elementType 表单项类型
  * @returns
  */
-export default function (item, elementType) {
+export default function (formItem, elementType) {
   const defaultAttrs = {}
 
   /* radio-group */
   const $groupAttrs = computed(() => {
     let result = {}
-    let itemAttr = item.attr || {}
+    let formItemAttr = formItem.attr || {}
 
-    result = Object.assign({}, defaultAttrs, itemAttr)
+    result = Object.assign({}, defaultAttrs, formItemAttr)
 
     return result
   })
@@ -27,10 +27,10 @@ export default function (item, elementType) {
   }
   function setRadioAttrs(option) {
     let result = {}
-    let itemAttr = option.attr || {}
+    let formItemAttr = option.attr || {}
     let typeAttr = radioAttrsMap[elementType]
 
-    result = Object.assign({}, defaultAttrs, typeAttr, itemAttr)
+    result = Object.assign({}, defaultAttrs, typeAttr, formItemAttr)
 
     return result
   }

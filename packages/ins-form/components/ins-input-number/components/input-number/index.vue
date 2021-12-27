@@ -10,7 +10,7 @@ import useSetAttrs from './composables/useSetAttrs.js'
 import { useVModel } from '@vueuse/core'
 
 let props = defineProps({
-  item: {
+  formItem: {
     type: Object,
     default: () => {},
   },
@@ -22,7 +22,7 @@ let props = defineProps({
 let emit = defineEmits(['update:modelValue', 'change'])
 
 /* attr */
-let { $attrs } = useSetAttrs(props.item)
+let { $attrs } = useSetAttrs(props.formItem)
 
 /* 值的双向绑定 */
 let inputValue = useVModel(props, 'modelValue', emit) // 值的双向绑定
@@ -42,15 +42,5 @@ function change() {
 <style lang="scss">
 .ins-input-number__number {
   font-family: inherit;
-  .el-input-number {
-    /* 解决校验错误时，-+号上下移动问题 */
-    .el-input-number__decrease,
-    .el-input-number__increase {
-      bottom: 1px;
-      i {
-        line-height: 1.2;
-      }
-    }
-  }
 }
 </style>

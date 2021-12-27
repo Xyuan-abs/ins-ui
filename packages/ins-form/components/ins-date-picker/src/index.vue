@@ -11,7 +11,7 @@ import useSetAttrs from './composables/useSetAttrs.js'
 import { useVModel } from '@vueuse/core'
 
 let props = defineProps({
-  item: {
+  formItem: {
     type: Object,
     default: () => {},
   },
@@ -23,9 +23,9 @@ let props = defineProps({
 let emit = defineEmits(['update:modelValue', 'change'])
 
 // 类型
-let { elementType } = useSetElementType(props.item)
+let { elementType } = useSetElementType(props.formItem)
 // attr
-let { $attrs } = useSetAttrs(props.item, elementType)
+let { $attrs } = useSetAttrs(props.formItem, elementType)
 // 值的双向绑定
 let dateValue = useVModel(props, 'modelValue', emit)
 

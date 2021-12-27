@@ -1,21 +1,21 @@
 /**
  * 获取表单项 类型
- * @param {Object} item 表单项配置
+ * @param {Object} formItem 表单项配置
  * @returns 表单项 类型
  */
-export default function (item) {
+export default function (formItem) {
   let result = ''
 
-  if (item.elementType?.includes('Range')) {
-    let separator = item['range-separator'] || '至'
+  if (formItem.elementType?.includes('Range')) {
+    let separator = formItem['range-separator'] || '至'
 
-    let startText = item.value?.[0] || ''
-    let endText = item.value?.[1] || ''
+    let startText = formItem.value?.[0] || ''
+    let endText = formItem.value?.[1] || ''
     let separatorText = startText && endText ? separator : ''
 
     result = `${startText} ${separatorText} ${endText}`
   } else {
-    result = `${item.value ?? ''}`
+    result = `${formItem.value ?? ''}`
   }
 
   return result

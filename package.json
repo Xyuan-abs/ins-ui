@@ -14,9 +14,11 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@element-plus/icons": "^0.0.11",
     "@vueuse/core": "^7.3.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.5",
     "@babel/eslint-parser": "^7.16.5",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.1.1",

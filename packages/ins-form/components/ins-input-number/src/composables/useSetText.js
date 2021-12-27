@@ -1,16 +1,16 @@
 /**
  * 获取表单项 类型
- * @param {Object} item 表单项配置
+ * @param {Object} formItem 表单项配置
  * @returns 表单项 类型
  */
-export default function (item) {
-  return getText(item)
+export default function (formItem) {
+  return getText(formItem)
 }
 
-function getText(item) {
+function getText(formItem) {
   let result = ''
 
-  let elementType = item.elementType || 'number'
+  let elementType = formItem.elementType || 'number'
 
   let valueMap = {
     number: getNumberText,
@@ -18,7 +18,7 @@ function getText(item) {
     numberRange: getNumberRangeText,
   }
 
-  result = valueMap[elementType](item)
+  result = valueMap[elementType](formItem)
 
   return result
 }

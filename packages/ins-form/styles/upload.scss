@@ -1,0 +1,24 @@
+.ins-form {
+  .ins-upload {
+    line-height: 1.2;
+
+    .el-upload {
+      & ~ .el-upload-list {
+        .el-upload-list__item-name {
+          margin-right: 43px;
+          line-height: 17px;
+        }
+        .el-upload-list__item-status-label {
+          line-height: 1;
+          top: 7px;
+        }
+        .el-progress {
+          top: 24px;
+          .el-progress__text {
+            top: -15px;
+          }
+        }
+      }
+    }
+  }
+}

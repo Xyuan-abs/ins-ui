@@ -8,14 +8,13 @@
 import InputNumber from '../components/input-number/index.vue'
 import InputNumberRange from '../components/input-number-range/index.vue'
 import InputNumberWithUnit from '../components/input-number-with-unit/index.vue'
-// import InputNumberWithUnit from '../components/InputNumberWithUnit.vue'
 
 import useSetElementType from './composables/useSetElementType'
 
 import { useVModel } from '@vueuse/core'
 
 let props = defineProps({
-  item: {
+  formItem: {
     type: Object,
     default: () => {},
   },
@@ -31,7 +30,7 @@ let props = defineProps({
 let emit = defineEmits(['update:modelValue', 'change'])
 
 /* 类型 */
-let { elementType } = useSetElementType(props.item)
+let { elementType } = useSetElementType(props.formItem)
 
 /* 值的双向绑定 */
 let numberValue = useVModel(props, 'modelValue', emit)
@@ -49,7 +48,7 @@ function change() {
     <input-number
       v-if="elementType === 'number'"
       v-model:modelValue="numberValue"
-      :item="item"
+      :form-item="formItem"
       @change="change"
     />
 
@@ -57,15 +56,16 @@ function change() {
     <input-number-with-unit
       v-if="elementType === 'numberWithUnit'"
       v-model:modelValue="numberValue"
-      :item="item"
+      :form-item="formItem"
       :index="index"
       @change="change"
     />
 
+    <!-- number-range -->
     <input-number-range
       v-if="elementType === 'numberRange'"
       v-model:modelValue="numberValue"
-      :item="item"
+      :form-item="formItem"
       :index="index"
       @change="change"
     />

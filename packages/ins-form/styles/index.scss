@@ -1,2 +1,17 @@
 @import './input.scss';
 @import './input-number.scss';
+@import './upload.scss';
+
+.center-abs {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 文字溢出省略 */
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

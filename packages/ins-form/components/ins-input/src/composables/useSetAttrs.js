@@ -2,14 +2,14 @@ import { computed } from 'vue'
 
 /**
  * 获取表单项 attrs
- * @param {*} item 表单项配置
+ * @param {*} formItem 表单项配置
  * @param {*} elementType 表单项类型
  * @returns
  */
-export default function (item, elementType) {
+export default function (formItem, elementType) {
   const defaultAttrs = {
     clearable: true,
-    placeholder: '请输入' + (item.label ?? ''),
+    placeholder: '请输入' + (formItem.label ?? ''),
   }
   const inputAttrs = {
     type: 'text',
@@ -27,11 +27,11 @@ export default function (item, elementType) {
   const $attrs = computed(() => {
     let result = {}
 
-    let itemAttr = item.attr || {}
+    let formItemAttr = formItem.attr || {}
 
     let typeAttr = attrsMap[elementType]
 
-    result = Object.assign({}, defaultAttrs, typeAttr, itemAttr)
+    result = Object.assign({}, defaultAttrs, typeAttr, formItemAttr)
 
     return result
   })

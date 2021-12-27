@@ -10,7 +10,7 @@ import useSetRules from './composables/useSetRules.js'
 import useSetModel from './composables/useSetModel.js'
 
 let props = defineProps({
-  item: {
+  formItem: {
     type: Object,
     default: () => {},
   },
@@ -26,10 +26,10 @@ let props = defineProps({
 let emit = defineEmits(['update:modelValue', 'change'])
 
 /* attr */
-const { $startAttr, $endAttr } = useSetAttrs(props.item)
+const { $startAttr, $endAttr } = useSetAttrs(props.formItem)
 
 /* rules */
-const { startRules, endRules } = useSetRules(props.item)
+const { startRules, endRules } = useSetRules(props.formItem)
 
 /* 值的双向绑定 */
 let { startValue, endValue, setStartValue, setEndValue } = useSetModel(
@@ -48,7 +48,7 @@ function change() {
   <div class="ins-input-number__range">
     <!-- 起始值 -->
     <el-form-item
-      :key="`form-item-${item.name}-number-range-start`"
+      :key="`form-item-${formItem.name}-number-range-start`"
       class="number-range-item number-range-start"
       :prop="'form[' + index + '].value[0]'"
       :rules="startRules"
@@ -66,7 +66,7 @@ function change() {
 
     <!-- 终止值 -->
     <el-form-item
-      :key="`form-item-${item.name}-number-range-end`"
+      :key="`form-item-${formItem.name}-number-range-end`"
       class="number-range-item number-range-end"
       :prop="'form[' + index + '].value[1]'"
       :rules="endRules"

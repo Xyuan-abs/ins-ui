@@ -3,9 +3,11 @@ import { ref, watch, nextTick } from 'vue'
 let defaultInputNumberValue = undefined
 
 /**
- * 获取表单项 类型
- * @param {Object} item 表单项配置
- * @returns 表单项 类型
+ *  useSetModel
+ * @param {*} props
+ * @param {*} attrs
+ * @param {*} emit
+ * @returns
  */
 export default function (props, attrs, emit) {
   let startValue = ref()
