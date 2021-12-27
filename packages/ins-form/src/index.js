@@ -8,6 +8,7 @@ import InsCascader from '../components/ins-cascader'
 import InsCheckbox from '../components/ins-checkbox'
 import InsRadio from '../components/ins-radio'
 import InsDatePicker from '../components/ins-date-picker'
+import InsUpload from '../components/ins-upload'
 
 import '../styles/index.scss'
 
@@ -21,6 +22,7 @@ let list = [
   InsCheckbox,
   InsRadio,
   InsDatePicker,
+  InsUpload,
 ]
 
 function install(app, options) {
