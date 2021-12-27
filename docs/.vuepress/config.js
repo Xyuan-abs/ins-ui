@@ -68,6 +68,10 @@ module.exports = {
                   text: 'Radio',
                   link:'/components/form/radio',
                 },
+                {
+                  text: 'Upload',
+                  link:'/components/form/upload',
+                },
               ]
             }
           ]
@@ -77,7 +81,13 @@ module.exports = {
   },
   plugins: [
     ['vuepress-plugin-demoblock-plus', {
-      cssPreprocessor: 'sass'
+      cssPreprocessor: 'sass',
+      scriptImports: ["import * as ElementPlus from 'element-plus'"],
+      scriptReplaces: [
+        { searchValue: /import ({.*}) from 'element-plus'/g,
+          replaceValue: (s, s1) => `const ${s1} = ElementPlus`
+        }
+      ]
     }]
   ]
 }
