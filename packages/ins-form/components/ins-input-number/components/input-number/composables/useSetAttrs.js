@@ -2,12 +2,12 @@ import { computed } from 'vue'
 
 /**
  * 获取表单项 attrs
- * @param {*} item 表单项配置
+ * @param {*} formItem 表单项配置
  * @returns
  */
-export default function (item) {
+export default function (formItem) {
   const defaultAttrs = {}
-  const $attrs = computed(() => Object.assign({}, defaultAttrs, item.attr || {}))
+  const $attrs = computed(() => Object.assign({}, defaultAttrs, formItem.attr || {}))
 
   return {
     $attrs,

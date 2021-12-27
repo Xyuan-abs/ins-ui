@@ -2,10 +2,10 @@ import { computed } from 'vue'
 
 /**
  * 获取表单项 attrs
- * @param {*} item 表单项配置
+ * @param {*} formItem 表单项配置
  * @returns
  */
-export default function (item) {
+export default function (formItem) {
   let startRules = computed(() => {
     return setRules(0)
   })
@@ -13,10 +13,10 @@ export default function (item) {
     return setRules(1)
   })
   function setRules(index) {
-    let attr = item.attr?.[index] ?? {}
-    let rules = item.rules?.[index] ?? []
+    let attr = formItem.attr?.[index] ?? {}
+    let rules = formItem.rules?.[index] ?? []
 
-    if (item.required) {
+    if (formItem.required) {
       rules.push({
         required: true,
         message: `请输入${attr.label || ''}`,

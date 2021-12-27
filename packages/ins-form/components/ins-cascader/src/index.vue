@@ -11,7 +11,7 @@ import useSetAttrs from './composables/useSetAttrs.js'
 import { useVModel } from '@vueuse/core'
 
 let props = defineProps({
-  item: {
+  formItem: {
     type: Object,
     default: () => {},
   },
@@ -23,10 +23,10 @@ let props = defineProps({
 let emit = defineEmits(['update:modelValue', 'change'])
 
 /* 组件类型 */
-let { elementType } = useSetElementType(props.item)
+let { elementType } = useSetElementType(props.formItem)
 
 /* attr */
-let { $attrs } = useSetAttrs(props.item, elementType)
+let { $attrs } = useSetAttrs(props.formItem, elementType)
 
 /* 值的双向绑定 */
 let selectValue = useVModel(props, 'modelValue', emit) // 值的双向绑定
@@ -43,12 +43,12 @@ function change() {
     <!-- 组件 -->
     <el-cascader
       v-model="selectValue"
-      :options="item.options"
+      :options="formItem.options"
       v-bind="$attrs"
       @change="change($event)"
     >
-      <template v-if="item.optionsItem" #default="{ node, data }">
-        <component :is="item.optionsItem" :node="node" :data="data" />
+      <template v-if="formItem.optionsItem" #default="{ node, data }">
+        <component :is="formItem.optionsItem" :node="node" :data="data" />
       </template>
     </el-cascader>
   </div>

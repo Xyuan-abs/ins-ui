@@ -1,11 +1,11 @@
 /**
  * 整合表单值、提交、重置
- * @param {*} ruleFormRef 表单ref实例
+ * @param {*} dynamicFormRef 表单ref实例
  * @param {*} dynamicForm 动态表单配置对象
  * @param {*} emit
  * @returns
  */
-export default function (ruleFormRef, dynamicForm, emit) {
+export default function (dynamicFormRef, dynamicForm, emit) {
   /**
    * 转换表单 到 保存数据
    * hidden=true 和 show=false 的区别
@@ -14,7 +14,7 @@ export default function (ruleFormRef, dynamicForm, emit) {
   function toSaveData() {
     let result = {}
 
-    ruleFormRef.value.validate((valid) => {
+    dynamicFormRef.value.validate((valid) => {
       if (valid) {
         dynamicForm?.form.forEach((d) => {
           // 隐藏的 不生成属性值
@@ -46,13 +46,24 @@ export default function (ruleFormRef, dynamicForm, emit) {
 
   // 重置表单
   function resetForm() {
-    ruleFormRef.value.resetFields()
+    dynamicFormRef.value.resetFields()
+    dynamicForm.form.forEach((formItem) => {
+      if (formItem.element === 'upload') {
+        formItem.attr.fileList = []
+      }
+    })
     emit('reset')
+  }
+
+  // 校验字段
+  function validateField(props, callback) {
+    dynamicFormRef.value.validateField(props, callback)
   }
 
   return {
     toSaveData,
     submitForm,
     resetForm,
+    validateField,
   }
 }

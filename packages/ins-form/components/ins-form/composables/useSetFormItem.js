@@ -11,10 +11,11 @@ export default function () {
 /**
  * 设置 style
  * @param {Number} cols 总共的列数
- * @param {FormItemObject} item 表单项配置对象
+ * @param {FormItemObject} formItem 表单项配置对象
  * @returns style
  */
-function setStyle(cols, { col, width } = {}) {
+function setStyle(cols, formItem) {
+  let { col, width } = formItem
   let style = {}
 
   /* 设置宽度 */

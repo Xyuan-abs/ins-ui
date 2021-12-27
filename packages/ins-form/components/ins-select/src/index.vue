@@ -11,7 +11,7 @@ import useSetAttrs from './composables/useSetAttrs.js'
 import { useVModel } from '@vueuse/core'
 
 let props = defineProps({
-  item: {
+  formItem: {
     type: Object,
     default: () => {},
   },
@@ -23,10 +23,10 @@ let props = defineProps({
 let emit = defineEmits(['update:modelValue', 'change'])
 
 /* 组件类型 */
-let { elementType } = useSetElementType(props.item)
+let { elementType } = useSetElementType(props.formItem)
 
 /* attr */
-let { $attrs } = useSetAttrs(props.item, elementType)
+let { $attrs } = useSetAttrs(props.formItem, elementType)
 
 /* 值的双向绑定 */
 let selectValue = useVModel(props, 'modelValue', emit) // 值的双向绑定
@@ -44,14 +44,14 @@ function change() {
     <el-select v-model="selectValue" v-bind="$attrs" @change="change($event)">
       <!-- 分组 -->
       <template v-if="elementType === 'group'">
-        <el-option-group v-for="group in item.options" :key="group.label" :label="group.label">
+        <el-option-group v-for="group in formItem.options" :key="group.label" :label="group.label">
           <el-option
             v-for="option in group.options"
             :key="option.value"
             :label="option.label"
             :value="option.value"
           >
-            <component :is="item.optionsItem" v-if="item.optionsItem" :option="option" />
+            <component :is="formItem.optionsItem" v-if="formItem.optionsItem" :option="option" />
           </el-option>
         </el-option-group>
       </template>
@@ -59,12 +59,12 @@ function change() {
       <!-- 其他 -->
       <template v-else>
         <el-option
-          v-for="option in item.options"
+          v-for="option in formItem.options"
           :key="option.value"
           :label="option.label"
           :value="option.value"
         >
-          <component :is="item.optionsItem" v-if="item.optionsItem" :option="option" />
+          <component :is="formItem.optionsItem" v-if="formItem.optionsItem" :option="option" />
         </el-option>
       </template>
     </el-select>

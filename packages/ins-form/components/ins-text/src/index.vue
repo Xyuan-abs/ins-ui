@@ -8,16 +8,19 @@
 import useSetText from './composables/useSetText.js'
 
 let props = defineProps({
-  item: {
+  formItem: {
     type: Object,
     default: () => {},
   },
 })
-let { text } = useSetText(props.item)
+let { text } = useSetText(props.formItem)
 </script>
 
 <template>
   <span class="ins-text"> {{ text }} </span>
+  <template>
+    <el-image v-for="d in formItem.value"></el-image>
+  </template>
 </template>
 
 <style lang="scss">

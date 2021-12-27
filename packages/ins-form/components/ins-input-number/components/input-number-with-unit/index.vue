@@ -13,7 +13,7 @@ import useSetRules from './composables/useSetRules'
 import useSetModel from './composables/useSetModel'
 
 let props = defineProps({
-  item: {
+  formItem: {
     type: Object,
     default: () => {},
   },
@@ -29,13 +29,13 @@ let props = defineProps({
 let emit = defineEmits(['update:modelValue', 'change'])
 
 // 单位下拉选项
-let { options } = toRefs(props.item)
+let { options } = toRefs(props.formItem)
 
 /* attr */
-const { $inputAttrs, $unitAttrs } = useSetAttrs(props.item)
+const { $inputAttrs, $unitAttrs } = useSetAttrs(props.formItem)
 
 /* rules */
-const { inputRules, unitRules } = useSetRules(props.item)
+const { inputRules, unitRules } = useSetRules(props.formItem)
 
 /* 值的双向绑定 */
 let { inputValue, unitValue, inputChange, unitChange } = useSetModel(props, emit)

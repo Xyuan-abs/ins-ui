@@ -3,15 +3,21 @@
  * @returns
  */
 export default function () {
-  function setRules(item) {
-    let rules = item.rules
+  function setRules(formItem) {
+    let rules = formItem.rules
 
     if (rules) {
       let requiredRule = rules.find((d) => d.required)
       if (requiredRule && !requiredRule.message) {
-        let message =
-          item.element === 'input' || item.element === 'inputNumber' ? '请输入' : '请选择'
-        requiredRule.message = message + item.label
+        let message = '请选择'
+        if (formItem.element === 'input' || formItem.element === 'inputNumber') {
+          message = '请输入'
+        }
+        if (formItem.element === 'upload') {
+          message = '请上传'
+        }
+
+        requiredRule.message = message + formItem.label
       }
     }
 

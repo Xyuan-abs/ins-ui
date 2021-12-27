@@ -2,16 +2,16 @@ import { computed } from 'vue'
 
 /**
  * 获取表单项 attrs
- * @param {*} item 表单项配置
+ * @param {*} formItem 表单项配置
  * @param {*} elementType 表单项类型
  * @returns
  */
-export default function (item, elementType) {
+export default function (formItem) {
   const defaultAttrs = {
     clearable: true,
-    placeholder: '请选择' + (item.label ?? ''),
+    placeholder: '请选择' + (formItem.label ?? ''),
   }
-  const $attrs = computed(() => Object.assign({}, defaultAttrs, item.attr || {}))
+  const $attrs = computed(() => Object.assign({}, defaultAttrs, formItem.attr || {}))
 
   return {
     $attrs,
