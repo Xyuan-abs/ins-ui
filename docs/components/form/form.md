@@ -406,7 +406,8 @@ let dynamicForm = reactive({
       attr: {
         fileList: [],
       },
-      col: 1,
+      col: 2,
+      width: '500px',
     },
     {
       name: 'uploadDragImg',
@@ -478,18 +479,18 @@ setTimeout(() => {
 
 其他属性参考 不同类型 各自的 formItem 配置
 
-| 属性        | 说明                                              | 类型          |
-| ----------- | ------------------------------------------------- | ------------- |
-| name        | 属性名                                            | String        |
-| label       | el-form 的 label                                  | String        |
-| value       | 属性值                                            | Any           |
-| element     | 表单一级类型                                      | String        |
-| elementType | 表单二级类型，具体参考对应 一级类型 的配置说明    | String        |
-| attr        | 对应 element-puls 组件的配置                      | Object        |
-| isText      | 是否纯文本展示,一般用于数据回显                   | Boolean       |
-| rules       | 校验规则                                          | Array         |
-| col         | 配合 cols，表示该项占几列，默认占一整行           | Number        |
-| width       | 表单项宽度,cols 与 width 同时存在时，width 不生效 | String,Number |
+| 属性        | 说明                                                                  | 类型          |
+| ----------- | --------------------------------------------------------------------- | ------------- |
+| name        | 属性名                                                                | String        |
+| label       | el-form 的 label                                                      | String        |
+| value       | 属性值                                                                | Any           |
+| element     | 表单一级类型                                                          | String        |
+| elementType | 表单二级类型，具体参考对应 一级类型 的配置说明                        | String        |
+| attr        | 对应 element-puls 组件的配置                                          | Object        |
+| isText      | 是否纯文本展示,一般用于数据回显                                       | Boolean       |
+| rules       | 校验规则                                                              | Array         |
+| col         | 配合 cols，表示该项占几列 ,设置的是 max-width ，max-width 为默认 100% | Number        |
+| width       | 表单项宽度,设置的是 width，默认 100%                                  | String,Number |
 
 ### InsForm Attributes
 

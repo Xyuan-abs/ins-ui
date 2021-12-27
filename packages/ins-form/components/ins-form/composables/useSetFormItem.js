@@ -19,8 +19,8 @@ function setStyle(cols, formItem) {
   let style = {}
 
   /* 设置宽度 */
-  let _width = setWidth(cols, col, width)
-  Object.assign(style, { width: _width })
+  let { _width, maxWidth } = setWidth(cols, col, width)
+  Object.assign(style, { width: _width, 'max-width': maxWidth })
 
   return style
 }
@@ -48,18 +48,22 @@ function setWidth(cols, col, width) {
   }
 
   let _width = '100%'
+  let maxWidth = '100%'
 
   if (cols) {
     // 栅格化
     if (cols && col) {
-      _width = ((col / cols) * 100).toFixed(2) + '%'
-    }
-  } else {
-    // 指定宽度
-    if (width) {
-      _width = typeof width === 'number' ? width + 'px' : width
+      maxWidth = ((col / cols) * 100).toFixed(2) + '%'
     }
   }
 
-  return _width
+  // 指定宽度
+  if (width) {
+    _width = typeof width === 'number' ? width + 'px' : width
+  }
+
+  return {
+    _width,
+    maxWidth,
+  }
 }
