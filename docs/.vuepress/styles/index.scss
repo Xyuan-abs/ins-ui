@@ -1,3 +1,10 @@
+.ins-form {
+  * {
+    padding: 0;
+    margin: 0;
+  }
+}
+
 table {
   font-size: 14px;
   th {
@@ -33,12 +40,5 @@ table {
     tr {
       background-color: transparent !important;
     }
-  }
-}
-
-.ins-form {
-  * {
-    padding: 0;
-    margin: 0;
   }
 }

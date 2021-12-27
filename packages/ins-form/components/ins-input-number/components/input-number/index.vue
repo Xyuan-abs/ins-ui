@@ -42,15 +42,5 @@ function change() {
 <style lang="scss">
 .ins-input-number__number {
   font-family: inherit;
-  .el-input-number {
-    /* 解决校验错误时，-+号上下移动问题 */
-    .el-input-number__decrease,
-    .el-input-number__increase {
-      bottom: 1px;
-      i {
-        line-height: 1.2;
-      }
-    }
-  }
 }
 </style>

@@ -83,30 +83,31 @@ let { loading } = useSetDragImgLoading(props.formItem)
       position: relative;
       .el-upload-dragger__inner {
         height: 100%;
-      }
-      .el-icon {
-        font-size: 67px;
-        color: var(--el-text-color-placeholder);
-        margin: 40px 0 16px;
-      }
-      .img-thumbnail {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .img-thumbnail__del {
-        display: none;
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        font-size: 12px;
-        cursor: pointer;
-        opacity: 1;
-        color: var(--el-color-primary);
-      }
-      &:hover {
+        .el-icon {
+          font-size: 67px;
+          color: var(--el-text-color-placeholder);
+          margin: 40px 0 16px;
+        }
+        .img-thumbnail {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
         .img-thumbnail__del {
-          display: block;
+          display: none;
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          font-size: 12px;
+          cursor: pointer;
+          opacity: 1;
+          line-height: 1.2;
+          color: var(--el-color-primary);
+        }
+        &:hover {
+          .img-thumbnail__del {
+            display: block;
+          }
         }
       }
     }
