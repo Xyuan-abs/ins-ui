@@ -552,8 +552,8 @@ function submit(value) {
 ::: tip 使用插槽时
 
 - 插槽的 name 为 formItem.name
-- 无需设置 formItem.element 和 formItem.elementType
-- isText 无效， 需要自行实现文本格式展示
+- 设置 formItem.element 和 formItem.elementType 无效
+- 设置 isText 无效， 需要自行实现文本格式展示
   :::
 
 ### formItem 通用配置
