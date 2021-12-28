@@ -4,7 +4,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn.mjs'
 
-import  * as ElementPlusIcon from '@element-plus/icons'
+import  * as ElementPlusIcon from '@element-plus/icons-vue'
 
 import  InsForm from '@ins-ui/ins-form'
 import  '@ins-ui/ins-form/lib/style.css'
