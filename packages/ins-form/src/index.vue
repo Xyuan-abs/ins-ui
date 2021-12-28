@@ -44,7 +44,7 @@ let { $attrs } = useSetAttrs()
 let { setStyle } = useSetFormItem(props.cols)
 
 // rules
-let { setRules } = useSetRules(props.cols)
+let { setRules } = useSetRules()
 
 // 提交、重置
 let dynamicFormRef = ref(null)
@@ -80,18 +80,10 @@ provide('validateField', validateField)
     v-bind="$attrs"
   >
     <template v-for="(formItem, index) in dynamicForm.form">
-      <!-- 自定义表单项 插槽 -->
-      <slot
-        v-if="formItem.isSlot === true"
-        :name="formItem.name"
-        :form-item="formItem"
-        :index="index"
-      />
-
       <!-- 自定义表单项 动态组件 -->
       <component
         :is="formItem.component"
-        v-else-if="formItem.component"
+        v-if="formItem.component"
         :key="`form-item-${index}`"
         :form-item="formItem"
       />
@@ -108,8 +100,16 @@ provide('validateField', validateField)
         :required="formItem.required"
         :style="setStyle(cols, formItem)"
       >
+        <!-- 自定义表单项 插槽 -->
+        <slot
+          v-if="formItem.isSlot === true"
+          :name="formItem.name"
+          :form-item="formItem"
+          :index="index"
+        />
+
         <!-- 纯文本 -->
-        <ins-text v-if="isText || formItem.isText" :form-item="formItem" />
+        <ins-text v-else-if="isText || formItem.isText" :form-item="formItem" />
         <!-- 具体组件 -->
         <template v-else>
           <!-- input -->

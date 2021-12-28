@@ -505,6 +505,57 @@ setTimeout(() => {
 
 :::
 
+#### 使用插槽
+
+::: demo
+
+```vue
+<script setup>
+import { reactive } from 'vue'
+let dynamicForm = reactive({
+  form: [
+    {
+      name: 'slot',
+      label: 'slot',
+      value: null,
+      isSlot: true,
+    },
+    {
+      name: 'slotRules',
+      label: 'slotRules',
+      value: null,
+      isSlot: true,
+      rules: [{ required: true, trigger: 'change' }],
+    },
+  ],
+})
+
+function submit(value) {
+  console.log(value)
+}
+</script>
+
+<template>
+  <ins-form :dynamicForm="dynamicForm" :cols="cols" @save="submit">
+    <template #slot="{ formItem, index }">
+      <el-input v-model="formItem.value" placeholder="这是一个通过插槽实现的表单项" />
+    </template>
+    <template #slotRules="{ formItem, index }">
+      <el-input v-model="formItem.value" placeholder="这是一个通过插槽实现的表单项" />
+    </template>
+  </ins-form>
+</template>
+```
+
+:::
+
+::: tip 使用插槽时
+
+- 插槽的 name 为 formItem.name
+- 无需设置 formItem.element 和 formItem.elementType
+- isText 无效， 需要自行实现文本格式展示
+  :::
+
 ### formItem 通用配置
 
 其他属性参考 不同类型 各自的 formItem 配置

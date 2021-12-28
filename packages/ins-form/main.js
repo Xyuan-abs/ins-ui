@@ -32,9 +32,8 @@ function install(app, options) {
     component.install(app)
   })
 }
-const form = {
+
+export default {
   name: 'ins-form',
   install,
 }
-
-export default form
