@@ -48,7 +48,7 @@ module.exports = fs
   .map((item) => {
     const pkg = require(path.resolve(root, item, 'package.json'))
     return {
-      input: path.resolve(root, item, 'src/index.js'),
+      input: path.resolve(root, item, 'main.js'),
       output: [
         {
           name: 'index',

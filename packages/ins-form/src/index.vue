@@ -7,10 +7,10 @@
 <script setup>
 import { provide, ref } from 'vue'
 
-import useSetAttrs from '../composables/useSetAttrs'
-import useSetFormItem from '../composables/useSetFormItem'
-import useSubmit from '../composables/useSubmit'
-import useSetRules from '../composables/useSetRules'
+import useSetAttrs from './composables/useSetAttrs'
+import useSetFormItem from './composables/useSetFormItem'
+import useSubmit from './composables/useSubmit'
+import useSetRules from './composables/useSetRules'
 
 let props = defineProps({
   dynamicForm: {

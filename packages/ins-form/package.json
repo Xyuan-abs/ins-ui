@@ -20,7 +20,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Xyuan-abs/ins-ui"
-},
+  },
   "peerDependencies": {
     "element-plus": "^1.2.0-beta.6",
     "vue": "^3.2.26"
