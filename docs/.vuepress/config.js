@@ -72,6 +72,10 @@ module.exports = {
                   text: 'Upload',
                   link:'/components/form/upload',
                 },
+                {
+                  text: 'Rate',
+                  link:'/components/form/rate',
+                },
               ]
             }
           ]
@@ -82,10 +86,13 @@ module.exports = {
   plugins: [
     ['vuepress-plugin-demoblock-plus', {
       cssPreprocessor: 'sass',
-      scriptImports: ["import * as ElementPlus from 'element-plus'"],
+      scriptImports: ["import * as ElementPlus from 'element-plus'","import * as ElementPlusIcon from '@element-plus/icons-vue'"],
       scriptReplaces: [
         { searchValue: /import ({.*}) from 'element-plus'/g,
           replaceValue: (s, s1) => `const ${s1} = ElementPlus`
+        },
+        { searchValue: /import ({.*}) from '@element-plus\/icons-vue'/g,
+          replaceValue: (s, s1) => `const ${s1} = ElementPlusIcon`
         }
       ]
     }]

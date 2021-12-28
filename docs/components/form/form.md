@@ -110,6 +110,17 @@ let dynamicForm = reactive({
       tip: '只能上传 jpg/png 文件，且不超过 500kb',
       width: '500px',
     },
+    {
+      name: 'rate',
+      label: 'rate',
+      value: null,
+      element: 'rate',
+      attr: {
+        'show-score': true,
+        'text-color': '#ff9900',
+        'score-template': '{value}分',
+      },
+    },
   ],
 })
 
@@ -234,6 +245,18 @@ let dynamicForm = reactive({
       col: 1,
     },
     {
+      name: 'rate',
+      label: 'rate',
+      value: null,
+      element: 'rate',
+      attr: {
+        'show-score': true,
+        'text-color': '#ff9900',
+        'score-template': '{value}分',
+      },
+      col: 1,
+    },
+    {
       name: 'uploadImgList',
       label: 'uploadImgList',
       value: [],
@@ -262,7 +285,7 @@ let dynamicForm = reactive({
       },
       formatterValue: formatterValue,
       tip: '只能上传 jpg/png 文件，且不超过 500kb',
-      col: 2,
+      col: 3,
     },
   ],
 })
@@ -407,7 +430,7 @@ let dynamicForm = reactive({
         fileList: [],
       },
       col: 2,
-      width: '500px',
+      width: '600px',
     },
     {
       name: 'uploadDragImg',
@@ -431,6 +454,13 @@ let dynamicForm = reactive({
       },
       col: 3,
     },
+    {
+      name: 'rate',
+      label: 'rate',
+      value: 4.3,
+      element: 'rate',
+      col: 1,
+    },
   ],
 })
 
@@ -446,7 +476,7 @@ setTimeout(() => {
       name: 'foodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfood.jpeg',
       url: url,
     },
-    { name: 'food2.jpeg', url: url },
+    { name: 'food2.jpeg', url: 'url' },
     { name: 'food3.jpeg', url: url },
   ]
 

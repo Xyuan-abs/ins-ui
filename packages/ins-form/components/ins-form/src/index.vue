@@ -182,6 +182,15 @@ provide('validateField', validateField)
             :index="index"
             @change="change(formItem)"
           />
+
+          <!-- ins-rate -->
+          <ins-rate
+            v-if="formItem.element === 'rate'"
+            v-model:modelValue="formItem.value"
+            :form-item="formItem"
+            :index="index"
+            @change="change(formItem)"
+          />
         </template>
       </el-form-item>
     </template>

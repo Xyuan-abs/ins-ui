@@ -9,6 +9,7 @@ import InsCheckbox from '../components/ins-checkbox'
 import InsRadio from '../components/ins-radio'
 import InsDatePicker from '../components/ins-date-picker'
 import InsUpload from '../components/ins-upload'
+import InsRate from '../components/ins-rate'
 
 import '../styles/index.scss'
 
@@ -23,6 +24,7 @@ let list = [
   InsRadio,
   InsDatePicker,
   InsUpload,
+  InsRate,
 ]
 
 function install(app, options) {
