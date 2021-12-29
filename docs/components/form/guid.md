@@ -3,6 +3,8 @@ lang: zh-CN
 title: Form 快速开始
 ---
 
+# InsForm
+
 ## 快速开始
 
 - 安装依赖

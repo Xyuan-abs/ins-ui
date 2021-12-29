@@ -30,7 +30,7 @@ module.exports = {
           children: [
             {
               text: 'InsForm 动态表单',
-              link:'/components/form/input',
+              link:'/components/form/guid',
               children: [
                 {
                   text: '快速开始',
@@ -77,6 +77,20 @@ module.exports = {
                   link:'/components/form/rate',
                 },
               ]
+            },
+            {
+              text: 'InsTable 动态表格',
+              link:'/components/table/guid',
+              children: [
+                {
+                  text: '快速开始',
+                  link:'/components/table/guid',
+                },
+                {
+                  text: 'table',
+                  link:'/components/table/table',
+                },
+              ]
             }
           ]
         },
@@ -96,5 +110,5 @@ module.exports = {
         }
       ]
     }]
-  ]
+  ],
 }
