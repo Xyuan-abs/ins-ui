@@ -1,0 +1,25 @@
+.el-date-picker,
+.el-date-range-picker {
+  table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 0px;
+    border-color: grey;
+    margin: 0;
+    th,
+    td {
+      border: none !important;
+    }
+    th {
+      border-bottom: solid 1px var(--el-border-color-lighter) !important;
+    }
+    tr {
+      background-color: transparent !important;
+    }
+  }
+}
+
+.el-picker-panel {
+}

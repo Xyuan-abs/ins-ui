@@ -1,3 +1,7 @@
+@import './table.scss';
+@import './form.scss';
+@import './vuepress.scss';
+
 .ins-form {
   * {
     padding: 0;
@@ -5,40 +9,7 @@
   }
 }
 
-table {
-  font-size: 14px;
-  th {
-    text-align: left;
-  }
-  th,
-  td {
-    border: none !important;
-    border-bottom: solid 1px var(--el-border-color-lighter) !important;
-  }
-  tr {
-    background-color: transparent !important;
-  }
-}
-
-.el-date-picker,
-.el-date-range-picker {
-  table {
-    display: table;
-    border-collapse: separate;
-    box-sizing: border-box;
-    text-indent: initial;
-    border-spacing: 0px;
-    border-color: grey;
-    margin: 0;
-    th,
-    td {
-      border: none !important;
-    }
-    th {
-      border-bottom: solid 1px var(--el-border-color-lighter) !important;
-    }
-    tr {
-      background-color: transparent !important;
-    }
-  }
+.line-number {
+  line-height: var(--code-line-height) !important;
+  font-size: var(--code-font-size) !important;
 }
