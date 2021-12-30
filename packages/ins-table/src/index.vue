@@ -84,5 +84,8 @@ defineExpose({
 <style lang="scss" scoped>
 .ins-table {
   font-family: inherit;
+  & + .ins-pager {
+    margin-top: 15px;
+  }
 }
 </style>
