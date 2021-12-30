@@ -87,7 +87,7 @@ module.exports = {
                   link:'/components/table/guid',
                 },
                 {
-                  text: 'table',
+                  text: 'Table',
                   link:'/components/table/table',
                 },
               ]
@@ -101,7 +101,7 @@ module.exports = {
                   link:'/components/pager/guid',
                 },
                 {
-                  text: 'pager',
+                  text: 'Pager',
                   link:'/components/pager/pager',
                 },
               ]
