@@ -91,6 +91,20 @@ module.exports = {
                   link:'/components/table/table',
                 },
               ]
+            },
+            {
+              text: 'InsPager 分页',
+              link:'/components/pager/guid',
+              children: [
+                {
+                  text: '快速开始',
+                  link:'/components/pager/guid',
+                },
+                {
+                  text: 'pager',
+                  link:'/components/pager/pager',
+                },
+              ]
             }
           ]
         },

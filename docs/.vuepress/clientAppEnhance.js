@@ -12,6 +12,9 @@ import  '@ins-ui/ins-form/lib/style.css'
 import  InsTable from '@ins-ui/ins-table'
 import  '@ins-ui/ins-table/lib/style.css'
 
+import  InsPager from '@ins-ui/ins-pager'
+import  '@ins-ui/ins-pager/lib/style.css'
+
 export default defineClientAppEnhance(({ app, router, siteData }) => {
   app.use(ElementPlus,{
     locale: zhCn,
@@ -23,5 +26,6 @@ export default defineClientAppEnhance(({ app, router, siteData }) => {
   
   app.use(InsForm)
   app.use(InsTable)
+  app.use(InsPager)
   // ...
 })
