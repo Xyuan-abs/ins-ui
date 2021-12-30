@@ -39,9 +39,17 @@ const handleChange = () => {
 
 属性除继承自 el-pagination 属性外，增加以下属性
 
-| 参数                | 说明                                      | 类型   |
+| 属性                | 说明                                      | 类型   |
 | ------------------- | ----------------------------------------- | ------ |
-| v-model:pagerParams | 分页参数对象，必须包含 page，limit、total | Object |
+| v-model:pagerParams | 分页参数对象，必须包含 page、limit、total | Object |
+
+### PagerParams
+
+| 属性  | 说明           | 类型   | 对应 el-pagination 的属性 |
+| ----- | -------------- | ------ | ------------------------- |
+| page  | 当前页码       | Number | current-page              |
+| limit | 每页多少条数据 | Number | page-size                 |
+| total | 一共多少条数据 | Number | total                     |
 
 ### InsPager Events
 
