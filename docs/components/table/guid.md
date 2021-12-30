@@ -1,9 +1,9 @@
 ---
 lang: zh-CN
-title: Form 快速开始
+title: Table 快速开始
 ---
 
-# InsForm
+# InsTable
 
 ## 快速开始
 
@@ -11,12 +11,12 @@ title: Form 快速开始
 
 ```sh-session
 npm i element-plus
-npm i @ins-ui/ins-form
+npm i @ins-ui/ins-table
 
 // or
 
 yarn add element-plus
-yarn add @ins-ui/ins-form
+yarn add @ins-ui/ins-table
 
 ```
 
@@ -31,13 +31,13 @@ import App from './App.vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
-import InsForm from '@ins-ui/ins-form'
-import '@ins-ui/ins-form/lib/style.css'
+import InsTable from '@ins-ui/ins-table'
+import '@ins-ui/ins-table/lib/style.css'
 
 let app = createApp(App)
 
 app.use(ElementPlus)
-app.use(InsForm)
+app.use(InsTable)
 
 app.mount('#app')
 ```

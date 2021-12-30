@@ -1,0 +1,16 @@
+.theme-default-content {
+  > table {
+    font-size: 14px;
+    th {
+      text-align: left;
+    }
+    th,
+    td {
+      border: none !important;
+      border-bottom: solid 1px var(--el-border-color-lighter) !important;
+    }
+    tr {
+      background-color: transparent !important;
+    }
+  }
+}

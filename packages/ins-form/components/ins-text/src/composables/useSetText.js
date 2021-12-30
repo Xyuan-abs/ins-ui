@@ -6,8 +6,8 @@ import getSelectText from '../../../ins-select/src/composables/useSetText'
 import getDatePickerText from '../../../ins-date-picker/src/composables/useSetText'
 import getCheckboxText from '../../../ins-checkbox/src/composables/useSetText'
 import getRadioText from '../../../ins-radio/src/composables/useSetText'
-import getCascader from '../../../ins-cascader/src/composables/useSetText'
-import getUpload from '../../../ins-upload/src/composables/useSetText'
+import getCascaderText from '../../../ins-cascader/src/composables/useSetText'
+import getRateText from '../../../ins-rate/src/composables/useSetText'
 
 // get by element
 const textMap = {
@@ -17,8 +17,8 @@ const textMap = {
   datePicker: getDatePickerText,
   checkbox: getCheckboxText,
   radio: getRadioText,
-  cascader: getCascader,
-  upload: getUpload,
+  cascader: getCascaderText,
+  rate: getRateText,
 }
 
 export default function (formItem) {

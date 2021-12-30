@@ -4,6 +4,7 @@ import path from 'path'
 import vue from 'rollup-plugin-vue'
 import { terser } from 'rollup-plugin-terser' // 压缩
 import json from '@rollup/plugin-json' // 读取json文件内容
+import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve' // import bar from './bar/index.js' => import bar from './bar'
 
 import postcss from 'rollup-plugin-postcss' // css
@@ -21,6 +22,7 @@ const getPlugins = () => {
       mainField: ['jsnext:main', 'browser', 'module', 'main'],
       browser: true,
     }),
+    commonjs(),
     json(),
     postcss({
       plugins: [autoprefixer],
@@ -48,7 +50,7 @@ module.exports = fs
   .map((item) => {
     const pkg = require(path.resolve(root, item, 'package.json'))
     return {
-      input: path.resolve(root, item, 'src/index.js'),
+      input: path.resolve(root, item, 'main.js'),
       output: [
         {
           name: 'index',

@@ -110,6 +110,17 @@ let dynamicForm = reactive({
       tip: '只能上传 jpg/png 文件，且不超过 500kb',
       width: '500px',
     },
+    {
+      name: 'rate',
+      label: 'rate',
+      value: null,
+      element: 'rate',
+      attr: {
+        'show-score': true,
+        'text-color': '#ff9900',
+        'score-template': '{value}分',
+      },
+    },
   ],
 })
 
@@ -234,6 +245,18 @@ let dynamicForm = reactive({
       col: 1,
     },
     {
+      name: 'rate',
+      label: 'rate',
+      value: null,
+      element: 'rate',
+      attr: {
+        'show-score': true,
+        'text-color': '#ff9900',
+        'score-template': '{value}分',
+      },
+      col: 1,
+    },
+    {
       name: 'uploadImgList',
       label: 'uploadImgList',
       value: [],
@@ -262,7 +285,7 @@ let dynamicForm = reactive({
       },
       formatterValue: formatterValue,
       tip: '只能上传 jpg/png 文件，且不超过 500kb',
-      col: 2,
+      col: 3,
     },
   ],
 })
@@ -407,7 +430,7 @@ let dynamicForm = reactive({
         fileList: [],
       },
       col: 2,
-      width: '500px',
+      width: '600px',
     },
     {
       name: 'uploadDragImg',
@@ -431,6 +454,13 @@ let dynamicForm = reactive({
       },
       col: 3,
     },
+    {
+      name: 'rate',
+      label: 'rate',
+      value: 4.3,
+      element: 'rate',
+      col: 1,
+    },
   ],
 })
 
@@ -446,7 +476,7 @@ setTimeout(() => {
       name: 'foodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfoodfood.jpeg',
       url: url,
     },
-    { name: 'food2.jpeg', url: url },
+    { name: 'food2.jpeg', url: 'url' },
     { name: 'food3.jpeg', url: url },
   ]
 
@@ -474,6 +504,57 @@ setTimeout(() => {
 ```
 
 :::
+
+#### 使用插槽
+
+::: demo
+
+```vue
+<script setup>
+import { reactive } from 'vue'
+let dynamicForm = reactive({
+  form: [
+    {
+      name: 'slot',
+      label: 'slot',
+      value: null,
+      isSlot: true,
+    },
+    {
+      name: 'slotRules',
+      label: 'slotRules',
+      value: null,
+      isSlot: true,
+      rules: [{ required: true, trigger: 'change' }],
+    },
+  ],
+})
+
+function submit(value) {
+  console.log(value)
+}
+</script>
+
+<template>
+  <ins-form :dynamicForm="dynamicForm" :cols="cols" @save="submit">
+    <template #slot="{ formItem, index }">
+      <el-input v-model="formItem.value" placeholder="这是一个通过插槽实现的表单项" />
+    </template>
+    <template #slotRules="{ formItem, index }">
+      <el-input v-model="formItem.value" placeholder="这是一个通过插槽实现的表单项" />
+    </template>
+  </ins-form>
+</template>
+```
+
+:::
+
+::: tip 使用插槽时
+
+- 插槽的 name 为 formItem.name
+- 设置 formItem.element 和 formItem.elementType 无效
+- 设置 isText 无效， 需要自行实现文本格式展示
+  :::
 
 ### formItem 通用配置
 

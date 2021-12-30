@@ -1,0 +1,31 @@
+{
+  "name": "@ins-ui/ins-table",
+  "version": "1.0.0-alpha.0",
+  "author": "Xyuan",
+  "license": "MIT",
+  "private": false,
+  "files": [
+    "lib",
+    "README.md"
+  ],
+  "main": "./lib/ins-table.umd.js",
+  "module": "./lib/ins-table.es.js",
+  "keywords": [
+    "vue3",
+    "element-plus",
+    "components",
+    "table"
+  ],
+  "homepage": "https://xyuan-abs.github.io/ins-ui/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Xyuan-abs/ins-ui"
+  },
+  "peerDependencies": {
+    "element-plus": "^1.2.0-beta.6",
+    "vue": "^3.2.26"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -30,7 +30,7 @@ module.exports = {
           children: [
             {
               text: 'InsForm 动态表单',
-              link:'/components/form/input',
+              link:'/components/form/guid',
               children: [
                 {
                   text: '快速开始',
@@ -72,6 +72,38 @@ module.exports = {
                   text: 'Upload',
                   link:'/components/form/upload',
                 },
+                {
+                  text: 'Rate',
+                  link:'/components/form/rate',
+                },
+              ]
+            },
+            {
+              text: 'InsTable 动态表格',
+              link:'/components/table/guid',
+              children: [
+                {
+                  text: '快速开始',
+                  link:'/components/table/guid',
+                },
+                {
+                  text: 'table',
+                  link:'/components/table/table',
+                },
+              ]
+            },
+            {
+              text: 'InsPager 分页',
+              link:'/components/pager/guid',
+              children: [
+                {
+                  text: '快速开始',
+                  link:'/components/pager/guid',
+                },
+                {
+                  text: 'pager',
+                  link:'/components/pager/pager',
+                },
               ]
             }
           ]
@@ -82,12 +114,15 @@ module.exports = {
   plugins: [
     ['vuepress-plugin-demoblock-plus', {
       cssPreprocessor: 'sass',
-      scriptImports: ["import * as ElementPlus from 'element-plus'"],
+      scriptImports: ["import * as ElementPlus from 'element-plus'","import * as ElementPlusIcon from '@element-plus/icons-vue'"],
       scriptReplaces: [
         { searchValue: /import ({.*}) from 'element-plus'/g,
           replaceValue: (s, s1) => `const ${s1} = ElementPlus`
+        },
+        { searchValue: /import ({.*}) from '@element-plus\/icons-vue'/g,
+          replaceValue: (s, s1) => `const ${s1} = ElementPlusIcon`
         }
       ]
     }]
-  ]
+  ],
 }
