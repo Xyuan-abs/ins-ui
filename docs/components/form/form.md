@@ -28,6 +28,7 @@ let dynamicForm = reactive({
       label: 'input',
       value: null,
       element: 'input',
+      width: 500,
     },
     {
       name: 'select',
@@ -40,19 +41,21 @@ let dynamicForm = reactive({
           value: 'optionsValue',
         },
       ],
+      width: 500,
     },
     {
       name: 'date',
       label: 'date',
       value: null,
       element: 'datePicker',
+      width: 500,
     },
     {
       name: 'input-number',
       label: 'inputNumber',
       value: null,
       element: 'inputNumber',
-      width: '300px',
+      width: '200px',
     },
     {
       name: 'checkbox',
@@ -93,6 +96,7 @@ let dynamicForm = reactive({
         { label: 'label2', value: 'value2' },
       ],
       element: 'cascader',
+      width: 500,
     },
     {
       name: 'upload',
