@@ -596,18 +596,22 @@ let dynamicForm = reactive({
     },
   ],
 })
+
+function submit(value) {
+  console.log(value)
+}
 </script>
 
 <template>
-  <ins-form :dynamicForm="dynamicForm" :inline="true" :label-width="'90px'" />
+  <ins-form :dynamicForm="dynamicForm" :inline="true" @save="submit" />
 </template>
 ```
 
 :::
 
-::: tip 使用 inline 时
+::: tip
 
-- 不显示 label
+- 行内表单 不显示 label
 
 :::
 
