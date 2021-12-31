@@ -1,10 +1,10 @@
-import { computed, useAttrs } from 'vue'
+import { computed } from 'vue'
 
 /**
  * ins-form attrs
  * @returns
  */
-export default function () {
+export default function (attrs) {
   const defaultAttrs = {
     'label-width': '100px',
   }
@@ -12,13 +12,9 @@ export default function () {
   const $attrs = computed(() => {
     let result = {}
 
-    let attrs = useAttrs()
-
     result = Object.assign({}, defaultAttrs, attrs)
-
     return result
   })
-
   return {
     $attrs,
   }

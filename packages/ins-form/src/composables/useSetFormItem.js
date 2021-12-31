@@ -2,9 +2,11 @@
  * 设置表单项 样式
  * @returns
  */
-export default function () {
+export default function (inline) {
   // 设置 表单项 宽度
   const setFormItemWidth = (cols, formItem) => {
+    if (inline) return undefined
+
     let width = '100%'
     let { col } = formItem
 

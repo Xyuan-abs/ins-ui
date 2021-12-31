@@ -5,7 +5,7 @@
   时间：2021年11月3日14:47:35
  -->
 <script setup>
-import { provide, ref } from 'vue'
+import { provide, ref, useAttrs } from 'vue'
 
 import useSetAttrs from './composables/useSetAttrs'
 import useSetFormItem from './composables/useSetFormItem'
@@ -23,7 +23,7 @@ let props = defineProps({
   },
   submitText: {
     type: String,
-    default: '提交',
+    default: '',
   },
   cols: {
     type: Number,
@@ -38,10 +38,14 @@ let props = defineProps({
 let emit = defineEmits(['change', 'save', 'reset'])
 
 // 属性
-let { $attrs } = useSetAttrs()
+let attrs = useAttrs()
+let { $attrs } = useSetAttrs(attrs)
+
+// 提交按钮 文本
+let defaultSubmitText = attrs.inline ? '查询' : '提交'
 
 //表单项样式
-let { setFormItemWidth, setFormItemInnerWidth } = useSetFormItem()
+let { setFormItemWidth, setFormItemInnerWidth } = useSetFormItem(attrs.inline)
 
 // rules
 let { setRules } = useSetRules()
@@ -69,6 +73,7 @@ defineExpose({
 })
 
 provide('validateField', validateField)
+provide('inline', attrs.inline)
 </script>
 
 <template>
@@ -95,7 +100,7 @@ provide('validateField', validateField)
         :key="`form-item-${formItem.name}`"
         class="form-item"
         :prop="formItem.required ? undefined : 'form[' + index + '].value'"
-        :label="formItem.label + (isText || formItem.isText ? ' :' : '')"
+        :label="$attrs.inline ? null : formItem.label + (isText || formItem.isText ? ' :' : '')"
         :rules="setRules(formItem)"
         :required="formItem.required"
         :style="{
@@ -207,7 +212,7 @@ provide('validateField', validateField)
     <!-- 表单按钮 -->
     <el-form-item v-if="hasSubmit" class="search-btn form-item">
       <el-button type="primary" @click="submitForm">
-        {{ submitText }}
+        {{ submitText || defaultSubmitText }}
       </el-button>
       <el-button @click="resetForm"> 重置 </el-button>
     </el-form-item>
@@ -220,8 +225,5 @@ provide('validateField', validateField)
   align-items: flex-start;
   justify-content: flex-start;
   flex-flow: row wrap;
-  .form-item {
-    width: 100%;
-  }
 }
 </style>
