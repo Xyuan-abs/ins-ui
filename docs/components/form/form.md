@@ -9,11 +9,9 @@ title: Form 动态表单
 
 [[toc]]
 
-## InsForm
+## 示例
 
-### 示例
-
-#### 基础表单
+### 基础表单
 
 ::: demo
 
@@ -161,7 +159,7 @@ function submit(value) {
 
 :::
 
-#### 多列表单
+### 多列表单
 
 ::: demo
 
@@ -327,7 +325,7 @@ function submit(value) {
 
 :::
 
-#### 纯文本
+### 纯文本
 
 ::: demo
 
@@ -509,7 +507,7 @@ setTimeout(() => {
 
 :::
 
-#### 使用插槽
+### 使用插槽
 
 ::: demo
 
@@ -558,9 +556,62 @@ function submit(value) {
 - 插槽的 name 为 formItem.name
 - 设置 formItem.element 和 formItem.elementType 无效
 - 设置 isText 无效， 需要自行实现文本格式展示
-  :::
 
-### formItem 通用配置
+:::
+
+### FormInline
+
+::: demo
+
+```vue
+<script setup>
+import { reactive } from 'vue'
+
+let dynamicForm = reactive({
+  form: [
+    {
+      name: 'input',
+      label: 'input',
+      value: null,
+      element: 'input',
+    },
+    {
+      name: 'select',
+      label: 'select',
+      value: null,
+      element: 'select',
+      options: [
+        {
+          label: 'optionsLabel',
+          value: 'optionsValue',
+        },
+      ],
+    },
+    {
+      name: 'date',
+      label: 'date',
+      value: null,
+      element: 'datePicker',
+      rules: [{ require: true, trigger: 'change' }],
+    },
+  ],
+})
+</script>
+
+<template>
+  <ins-form :dynamicForm="dynamicForm" :inline="true" :label-width="'90px'" />
+</template>
+```
+
+:::
+
+::: tip 使用 inline 时
+
+- 不显示 label
+
+:::
+
+## formItem 通用配置
 
 其他属性参考 不同类型 各自的 formItem 配置
 
@@ -577,7 +628,7 @@ function submit(value) {
 | col         | 配合 cols，表示该项占几列 ,设置的是 max-width ，max-width 为默认 100% | Number        |
 | width       | 表单项宽度,设置的是 width，默认 100%                                  | String,Number |
 
-### InsForm Attributes
+## InsForm Attributes
 
 属性除继承自 el-form 属性外，增加以下属性
 
@@ -590,7 +641,7 @@ function submit(value) {
 | submitText  | 提交按钮文本                                   | String  | —          | 提交   |
 | isText      | 表单是否全部展示成纯文本                       | Boolean | true/false | false  |
 
-### InsForm Events
+## InsForm Events
 
 | 事件名称 | 说明                           | 回调参数          |
 | -------- | ------------------------------ | ----------------- |
@@ -598,7 +649,7 @@ function submit(value) {
 | save     | 提交表单并校验成功后触发的事件 | (formData:Object) |
 | reset    | 重置表单后触发的事件           |                   |
 
-### InsForm Methods
+## InsForm Methods
 
 | 事件名称      | 说明                                                                         | 参数                             |
 | ------------- | ---------------------------------------------------------------------------- | -------------------------------- |

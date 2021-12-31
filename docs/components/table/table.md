@@ -7,7 +7,7 @@ title: Table 动态表格
 
 [[toc]]
 
-## InsTable
+## 示例
 
 ### 基础表格
 
@@ -670,7 +670,7 @@ let tableInfo = reactive({
 
 :::
 
-### InsTable Attributes
+## InsTable Attributes
 
 属性除继承自 el-table 属性外，增加以下属性
 
@@ -683,14 +683,14 @@ let tableInfo = reactive({
 | hasIndex  | 是否展示序号                      | Boolean | false  |
 | expand    | 是否展开行，配合 slot expand 使用 | Boolean | false  |
 
-### InsTable 暴露的属性和方法
+## InsTable 暴露的属性和方法
 
 | 名称       | 类型 | 说明                     | 参数                                     |
 | ---------- | ---- | ------------------------ | ---------------------------------------- |
 | elTableRef | 属性 | el-table 组件的 ref      | —                                        |
 | dispatch   | 方法 | 触发 el-table 暴露的方法 | (eventName:String,...arg:事件对应的参数) |
 
-### tableHead 的数据格式
+## tableHead 的数据格式
 
 | 名称   | 说明                          |
 | ------ | ----------------------------- |
@@ -699,7 +699,7 @@ let tableInfo = reactive({
 | isSlot | 是否是自定义列                |
 | attrs  | 列的属性                      |
 
-### InsTable Slot
+## InsTable Slot
 
 ::: tip
 
