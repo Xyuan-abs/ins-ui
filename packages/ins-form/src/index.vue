@@ -5,7 +5,7 @@
   时间：2021年11月3日14:47:35
  -->
 <script setup>
-import { provide, ref } from 'vue'
+import { provide, ref, useAttrs } from 'vue'
 
 import useSetAttrs from './composables/useSetAttrs'
 import useSetFormItem from './composables/useSetFormItem'
@@ -23,7 +23,7 @@ let props = defineProps({
   },
   submitText: {
     type: String,
-    default: '提交',
+    default: '',
   },
   cols: {
     type: Number,
@@ -38,10 +38,14 @@ let props = defineProps({
 let emit = defineEmits(['change', 'save', 'reset'])
 
 // 属性
-let { $attrs } = useSetAttrs()
+let attrs = useAttrs()
+let { $attrs } = useSetAttrs(attrs)
+
+// 提交按钮 文本
+let defaultSubmitText = attrs.inline ? '查询' : '提交'
 
 //表单项样式
-let { setStyle } = useSetFormItem(props.cols)
+let { setFormItemWidth, setFormItemInnerWidth } = useSetFormItem(attrs.inline)
 
 // rules
 let { setRules } = useSetRules()
@@ -69,6 +73,7 @@ defineExpose({
 })
 
 provide('validateField', validateField)
+provide('inline', attrs.inline)
 </script>
 
 <template>
@@ -95,110 +100,119 @@ provide('validateField', validateField)
         :key="`form-item-${formItem.name}`"
         class="form-item"
         :prop="formItem.required ? undefined : 'form[' + index + '].value'"
-        :label="formItem.label + (isText || formItem.isText ? ' :' : '')"
+        :label="$attrs.inline ? null : formItem.label + (isText || formItem.isText ? ' :' : '')"
         :rules="setRules(formItem)"
         :required="formItem.required"
-        :style="setStyle(cols, formItem)"
+        :style="{
+          width: setFormItemWidth(cols, formItem),
+        }"
       >
-        <!-- 自定义表单项 插槽 -->
-        <slot
-          v-if="formItem.isSlot === true"
-          :name="formItem.name"
-          :form-item="formItem"
-          :index="index"
-        />
-
-        <!-- 纯文本 -->
-        <ins-text v-else-if="isText || formItem.isText" :form-item="formItem" />
-        <!-- 具体组件 -->
-        <template v-else>
-          <!-- input -->
-          <ins-input
-            v-if="formItem.element === 'input'"
-            v-model:modelValue="formItem.value"
-            :form-item="formItem"
-            @change="change(item)"
-          />
-
-          <!-- input-number -->
-          <ins-input-number
-            v-if="formItem.element === 'inputNumber'"
-            v-model:modelValue="formItem.value"
+        <div
+          class="el-form-item__inner"
+          :style="{
+            width: setFormItemInnerWidth(formItem),
+          }"
+        >
+          <!-- 自定义表单项 插槽 -->
+          <slot
+            v-if="formItem.isSlot === true"
+            :name="formItem.name"
             :form-item="formItem"
             :index="index"
-            @change="change(formItem)"
           />
 
-          <!-- ins-select -->
-          <ins-select
-            v-if="formItem.element === 'select'"
-            v-model:modelValue="formItem.value"
-            :form-item="formItem"
-            :index="index"
-            @change="change(formItem)"
-          />
+          <!-- 纯文本 -->
+          <ins-text v-else-if="isText || formItem.isText" :form-item="formItem" />
+          <!-- 具体组件 -->
+          <template v-else>
+            <!-- input -->
+            <ins-input
+              v-if="formItem.element === 'input'"
+              v-model:modelValue="formItem.value"
+              :form-item="formItem"
+              @change="change(item)"
+            />
 
-          <!-- ins-date-picker -->
-          <ins-date-picker
-            v-if="formItem.element === 'datePicker'"
-            v-model:modelValue="formItem.value"
-            :form-item="formItem"
-            :index="index"
-            @change="change(formItem)"
-          />
+            <!-- input-number -->
+            <ins-input-number
+              v-if="formItem.element === 'inputNumber'"
+              v-model:modelValue="formItem.value"
+              :form-item="formItem"
+              :index="index"
+              @change="change(formItem)"
+            />
 
-          <!-- ins-checkbox -->
-          <ins-checkbox
-            v-if="formItem.element === 'checkbox'"
-            v-model:modelValue="formItem.value"
-            :form-item="formItem"
-            :index="index"
-            @change="change(formItem)"
-          />
+            <!-- ins-select -->
+            <ins-select
+              v-if="formItem.element === 'select'"
+              v-model:modelValue="formItem.value"
+              :form-item="formItem"
+              :index="index"
+              @change="change(formItem)"
+            />
 
-          <!-- ins-radio -->
-          <ins-radio
-            v-if="formItem.element === 'radio'"
-            v-model:modelValue="formItem.value"
-            :form-item="formItem"
-            :index="index"
-            @change="change(formItem)"
-          />
+            <!-- ins-date-picker -->
+            <ins-date-picker
+              v-if="formItem.element === 'datePicker'"
+              v-model:modelValue="formItem.value"
+              :form-item="formItem"
+              :index="index"
+              @change="change(formItem)"
+            />
 
-          <!-- ins-cascader -->
-          <ins-cascader
-            v-if="formItem.element === 'cascader'"
-            v-model:modelValue="formItem.value"
-            :form-item="formItem"
-            :index="index"
-            @change="change(formItem)"
-          />
+            <!-- ins-checkbox -->
+            <ins-checkbox
+              v-if="formItem.element === 'checkbox'"
+              v-model:modelValue="formItem.value"
+              :form-item="formItem"
+              :index="index"
+              @change="change(formItem)"
+            />
 
-          <!-- ins-upload -->
-          <ins-upload
-            v-if="formItem.element === 'upload'"
-            v-model:modelValue="formItem.value"
-            :form-item="formItem"
-            :index="index"
-            @change="change(formItem)"
-          />
+            <!-- ins-radio -->
+            <ins-radio
+              v-if="formItem.element === 'radio'"
+              v-model:modelValue="formItem.value"
+              :form-item="formItem"
+              :index="index"
+              @change="change(formItem)"
+            />
 
-          <!-- ins-rate -->
-          <ins-rate
-            v-if="formItem.element === 'rate'"
-            v-model:modelValue="formItem.value"
-            :form-item="formItem"
-            :index="index"
-            @change="change(formItem)"
-          />
-        </template>
+            <!-- ins-cascader -->
+            <ins-cascader
+              v-if="formItem.element === 'cascader'"
+              v-model:modelValue="formItem.value"
+              :form-item="formItem"
+              :index="index"
+              @change="change(formItem)"
+            />
+
+            <!-- ins-upload -->
+            <ins-upload
+              v-if="formItem.element === 'upload'"
+              v-model:modelValue="formItem.value"
+              :form-item="formItem"
+              :index="index"
+              @change="change(formItem)"
+            />
+
+            <!-- ins-rate -->
+            <ins-rate
+              v-if="formItem.element === 'rate'"
+              v-model:modelValue="formItem.value"
+              :form-item="formItem"
+              :index="index"
+              @change="change(formItem)"
+            />
+          </template>
+        </div>
       </el-form-item>
     </template>
 
     <!-- 表单按钮 -->
     <el-form-item v-if="hasSubmit" class="search-btn form-item">
       <el-button type="primary" @click="submitForm">
-        {{ submitText }}
+        {{ submitText || defaultSubmitText }}
       </el-button>
       <el-button @click="resetForm"> 重置 </el-button>
     </el-form-item>
@@ -211,8 +225,5 @@ provide('validateField', validateField)
   align-items: flex-start;
   justify-content: flex-start;
   flex-flow: row wrap;
-  .form-item {
-    width: 100%;
-  }
 }
 </style>

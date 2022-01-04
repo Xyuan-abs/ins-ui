@@ -13,17 +13,6 @@ module.exports = {
     ],
     // 为以下路由添加侧边栏
     sidebar:{
-      '/guide/': [
-        {
-          text: '组件',
-          children: [
-            {
-              text: 'InsForm 动态表单',
-              link:'/guide/form',
-            }
-          ]
-        },
-      ],
       '/components':[
         {
           text: '组件',
@@ -87,7 +76,7 @@ module.exports = {
                   link:'/components/table/guid',
                 },
                 {
-                  text: 'table',
+                  text: 'Table',
                   link:'/components/table/table',
                 },
               ]
@@ -101,7 +90,7 @@ module.exports = {
                   link:'/components/pager/guid',
                 },
                 {
-                  text: 'pager',
+                  text: 'Pager',
                   link:'/components/pager/pager',
                 },
               ]
