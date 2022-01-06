@@ -28,7 +28,7 @@ jobs:
       - name: Build ins-ui
         run: yarn build
 
-      # 运行构建脚本
+      # 打包文档
       - name: Build VuePress site
         run: yarn docs:build
 
