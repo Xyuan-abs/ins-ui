@@ -159,6 +159,14 @@ function submit(value) {
 
 :::
 
+::: tip 小提示
+如果觉得 formItem 宽度太大，有两种方案可以解决
+
+- 可以分别设置 formItem.width
+- 直接设置 ins-form 的宽度
+
+:::
+
 ### 多列表单
 
 ::: demo
