@@ -18,8 +18,8 @@ let props = defineProps({
     default: () => {},
   },
   modelValue: {
-    type: Array,
-    default: () => [],
+    type: String,
+    default: '',
   },
 })
 let emit = defineEmits(['update:modelValue', 'change'])
